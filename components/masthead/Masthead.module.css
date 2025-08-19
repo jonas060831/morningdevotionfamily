@@ -1,0 +1,69 @@
+.masthead_container {
+    background: url('../../public/assets/images/bgs/slide1bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.dtcLogo {
+  width: 20rem;
+  pointer-events: none;
+  outline: none;
+  filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.5));
+}
+
+.header {
+  font-family: var(--font-poiretOne);
+  font-size: 5rem;
+  color: white;
+  filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.5));
+}
+
+.subheader {
+  font-family: var(--font-montserrat);
+  font-size: 230%;
+  color: white;
+}
+
+.buttonContent {
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.redDot {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 100vw;
+  background-color: red;
+}
+
+
+/* Tablet */
+@media (max-width: 1023px) {
+  /* Tablet styles here */
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  /* Mobile styles here */
+  .dtcLogo {
+    width: 10rem;
+  }
+  .header {
+    font-size: 3rem;
+  }
+
+  .subheader {
+    font-size: 1.5rem;
+  }
+}

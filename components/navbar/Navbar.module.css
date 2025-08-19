@@ -1,0 +1,147 @@
+
+.navbar {
+  position: absolute;
+  font-family: var(--font-inter);
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 2rem;
+  background: transparent;
+  z-index: 1000;
+  transition: background 0.4s ease;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.fixed {
+  position: fixed;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(6px);
+  z-index: 1003;
+}
+
+.overlayS {
+    background-color: rgba(0, 128, 0, 0.238);
+    width: 100vw;
+    height: 100vh;
+    padding: 1rem 2rem;
+    display: block;
+}
+
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.menuButton {
+    width: 3rem;
+    background-color: none;
+    border-radius: 100vw;
+    display: flex;
+    align-items: center;
+    padding: 0.3rem;
+}
+
+.menuButton:hover {
+    background-color: rgba(221, 221, 221, 0.456);
+}
+
+.navLinks {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.navLinks a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s;
+}
+
+.navLinks a:hover {
+  color: #00bcd4;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+}
+
+/* Mobile Menu */
+.mobileMenu {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 60%;
+  height: 100vh;
+  background: rgba(0,0,0,0.95);
+  padding: 2rem;
+  z-index: 999;
+}
+
+.mobileMenu ul {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  list-style: none;
+}
+
+.mobileMenu a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navLinks {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+  .mobileMenu {
+    display: block;
+  }
+}
+
+
+/* Tablet */
+@media (max-width: 1023px) {
+  /* Tablet styles here */
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  /* Mobile styles here */
+
+  .navbar {
+    padding: 0.5rem;
+  }
+}

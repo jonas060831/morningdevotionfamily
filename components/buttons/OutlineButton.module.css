@@ -1,0 +1,20 @@
+
+.black {
+    font-family: var(--font-poiretOne);
+    font-size: medium;
+    font-weight: 600;
+    color: black;
+    border: 2px solid;
+    padding: 0.5rem 1rem;
+    border-radius: 100vw;
+}
+
+.white {
+    font-family: var(--font-poiretOne);
+    font-size: medium;
+    font-weight: 600;
+    color: white;
+    border: 2px solid;
+    padding: 0.5rem 1rem;
+    border-radius: 100vw;
+}
