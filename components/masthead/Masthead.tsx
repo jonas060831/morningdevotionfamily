@@ -2,15 +2,25 @@
 import React from 'react'
 import styles from './Masthead.module.css'
 import OutlineButton from '../buttons/OutlineButton'
+import Image from 'next/image'
 
 const Masthead = () => {
   return (
     <div className={styles.masthead_container}>
         
-        <img
-         className={styles.dtcLogo}
-         src="/assets/images/logos/dtc.png" alt="dtc logo"
-        />
+        <div style={{ position: 'relative', width: '300px', height: "400px" }}>
+          <Image
+            src="/assets/images/logos/dtc.png"
+            alt="dtc logo"
+            fill
+            style={{ 
+              objectFit: "contain",
+              pointerEvents: "none",
+              outline: "none",
+              filter: "drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.5))"
+            }}
+          />
+        </div>
 
         <p className={styles.header}>Devoted to Christ</p>
 
@@ -23,7 +33,7 @@ const Masthead = () => {
             <p>Watch Live</p>
           </div>
          }
-         onClick={() => alert(123)}
+         onClick={() => {}}
          color='white'
         />
     </div>

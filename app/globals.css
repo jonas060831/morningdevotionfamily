@@ -25,9 +25,8 @@ a {
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background-color: #fff;
+  font-family: var(--font-inter), var(--font-montserrat), var(--font-poiretOne),var(--font-pollerOne);
+  background-color: black;
   color: #000;
   overflow-x: hidden;
 }
@@ -67,6 +66,24 @@ button {
     scroll-behavior: auto !important;
   }
 }
+
+
+.snap_container { 
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100vh;
+}
+.snap_item {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: start;
+}
+
+
 
 
 /* Tablet */

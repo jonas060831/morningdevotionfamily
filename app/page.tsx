@@ -3,13 +3,21 @@ import Masthead from "@/components/masthead/Masthead";
 
  const Home = () => {
   return (
-    <div className="container">
+    <div className="snap_container">
       
-      <Masthead />
+      <section 
+       className="snap_item"
+       id='mastHead'
+      >
+        <Masthead />
+      </section>
 
-      <div style={{ width: '100vw', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <section
+       className="snap_item"
+       id="section2"
+      >
         section 2
-      </div>
+      </section>
     </div>
   );
 }
