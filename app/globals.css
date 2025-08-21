@@ -26,8 +26,8 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   font-family: var(--font-inter), var(--font-montserrat), var(--font-poiretOne),var(--font-pollerOne);
-  background-color: black;
-  color: #000;
+  background-color: #262626;
+  color: white;
   overflow-x: hidden;
 }
 
@@ -83,7 +83,12 @@ button {
   scroll-snap-align: start;
 }
 
+.containerWithBorder {
+  background-color: white;
+  width: 100%;
+  height: 100%;
 
+}
 
 
 /* Tablet */

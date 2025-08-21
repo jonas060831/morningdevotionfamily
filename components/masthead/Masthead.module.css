@@ -52,11 +52,12 @@
   /* Mobile styles here */
   .masthead_container {
     background-attachment: unset;
+    background-position: 62%;
+
   }
   .header {
     font-size: 3rem;
   }
-
   .subheader {
     font-size: 1.5rem;
   }

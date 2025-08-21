@@ -1,3 +1,4 @@
+import PastorBiography from "@/components/biography/PastorBiography";
 import Masthead from "@/components/masthead/Masthead";
 
 
@@ -14,9 +15,9 @@ import Masthead from "@/components/masthead/Masthead";
 
       <section
        className="snap_item"
-       id="section2"
+       id="pastorBiography"
       >
-        section 2
+        <PastorBiography />
       </section>
     </div>
   );

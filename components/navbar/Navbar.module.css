@@ -23,7 +23,7 @@
 
 .fixed {
   position: fixed;
-  background: rgba(0,0,0,0.85);
+  background: #262626;
   backdrop-filter: blur(6px);
   z-index: 1003;
 }
@@ -100,7 +100,7 @@
   right: 0;
   width: 60%;
   height: 100vh;
-  background: rgba(0,0,0,0.95);
+  background: #262626;
   padding: 2rem;
   z-index: 999;
 }
