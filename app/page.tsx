@@ -1,5 +1,6 @@
 import PastorBiography from "@/components/biography/PastorBiography";
 import Masthead from "@/components/masthead/Masthead";
+import ServicesPreview from "@/components/servicespreview/ServicesPreview";
 
 
  const Home = () => {
@@ -18,6 +19,13 @@ import Masthead from "@/components/masthead/Masthead";
        id="pastorBiography"
       >
         <PastorBiography />
+      </section>
+
+      <section 
+       className="snap_item"
+       id="servicesPreview"
+      >
+        <ServicesPreview />
       </section>
     </div>
   );

@@ -1,0 +1,24 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(to bottom right,#c6874d,#5962db);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+
+}
+
+.header {
+    width: 750px;
+}
+
+.servicesFlex {
+    display: flex;
+    gap: 2rem;
+}
+
+.footnote {
+    text-align: center;
+}

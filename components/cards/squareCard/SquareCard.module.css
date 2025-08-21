@@ -1,0 +1,30 @@
+
+.card {
+    background-color: white;
+    height: 300px;
+    width: 340px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: left;
+    border-radius: 30px;
+    padding: 2rem;
+    box-shadow: 1px 3px 6px rgb(82, 82, 82);
+}
+
+.span {
+    font-size: 6rem;
+}
+
+.h1 {
+    font-family: var(--font-pollerOne);
+    font-size: medium;
+}
+
+.p {
+    color: gray;
+    font-family: var(--font-montserrat);
+    font-size: small;
+}
