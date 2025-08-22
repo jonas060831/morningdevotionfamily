@@ -12,7 +12,7 @@ const Navbar = () => {
   const controls = useAnimation();
 
   useEffect(() => {
-    const snapContainer = document.querySelector(".snap_container");
+    const snapContainer = document.querySelector(".snapContainer");
 
     const handleScroll = () => {
       const currentScrollY = snapContainer?.scrollTop ?? 0;

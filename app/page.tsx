@@ -5,28 +5,30 @@ import ServicesPreview from "@/components/servicespreview/ServicesPreview";
 
  const Home = () => {
   return (
-    <div className="snap_container">
+    <div className="snapContainer">
       
       <section 
-       className="snap_item"
+       className="snapItem"
        id='mastHead'
       >
         <Masthead />
       </section>
 
       <section
-       className="snap_item"
+       className="snapItem"
        id="pastorBiography"
       >
         <PastorBiography />
       </section>
 
       <section 
-       className="snap_item"
+       className="snapItem"
        id="servicesPreview"
       >
         <ServicesPreview />
       </section>
+
+      
     </div>
   );
 }
