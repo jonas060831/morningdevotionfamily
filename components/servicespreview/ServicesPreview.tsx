@@ -23,7 +23,7 @@ const servicesThumbnails = [
     }, {
         icon: '→',
         title: 'View All',
-        description: ''
+        description: 'Browse all our Services'
     }
 ]
 
@@ -40,7 +40,7 @@ const ServicesPreview = () => {
 
 
             entry.isIntersecting ? container.scrollTo({ left: 300, behavior: "smooth" }) : container.scrollTo({ left: 0, behavior: "instant" });
-            
+
         });
         },
         { threshold: 0.5 } // trigger when 50% visible
