@@ -16,9 +16,29 @@
 
 .servicesFlex {
     display: flex;
-    gap: 2rem;
+    gap: 3rem;
 }
 
 .footnote {
     text-align: center;
 }
+
+/* Tablet */
+@media (max-width: 1023px) {
+  /* Tablet styles here */
+
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  /* Mobile styles here */
+    .servicesFlex {
+        overflow-x: scroll;
+        width: 100vw;
+        overflow-y: hidden;
+        padding: 0.5rem 0rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        white-space: nowrap;
+    }
+} 

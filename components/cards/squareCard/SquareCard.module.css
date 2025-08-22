@@ -5,13 +5,14 @@
     width: 340px;
     color: black;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     flex-direction: column;
     text-align: left;
     border-radius: 30px;
     padding: 2rem;
     box-shadow: 1px 3px 6px rgb(82, 82, 82);
+    cursor: pointer;
 }
 
 .span {
@@ -28,3 +29,21 @@
     font-family: var(--font-montserrat);
     font-size: small;
 }
+
+
+/* Tablet */
+@media (max-width: 1023px) {
+  /* Tablet styles here */
+
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  /* Mobile styles here */
+  .card {
+    flex: 0 0 auto;
+    justify-content: start;
+    height: 250px;
+    width: 300px;
+  }
+} 

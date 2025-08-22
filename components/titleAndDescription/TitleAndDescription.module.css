@@ -1,3 +1,7 @@
+.container {
+    width: 100%;
+}
+
 .title {
  font-family: var(--font-poiretOne);
 }
@@ -6,3 +10,26 @@
  font-family: var(--font-montserrat);
 
 }
+
+/* Tablet */
+@media (max-width: 1023px) {
+  /* Tablet styles here */
+
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  /* Mobile styles here */
+  .container {
+    width: 100vw;
+    text-align: center;
+    margin: 0px auto;
+  }
+  .title {
+    font-size: x-large !important;
+    font-weight: 800;
+  }
+  .description {
+    font-size: small !important;
+  }
+} 
