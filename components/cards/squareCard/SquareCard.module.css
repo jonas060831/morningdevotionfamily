@@ -1,0 +1,54 @@
+.card {
+    background-color: white;
+    width: 340px;
+    /* remove fixed height */
+    color: black;
+    display: flex;
+    justify-content: flex-start; /* align items at top */
+    align-items: center;     /* align items at top */
+    flex-direction: column;
+    text-align: left;
+    border-radius: 30px;
+    padding: 2rem;
+    box-shadow: 1px 3px 6px rgb(82, 82, 82);
+    cursor: pointer;
+}
+
+.span {
+    font-size: 6rem;
+}
+
+.h1 {
+    font-family: var(--font-pollerOne);
+    font-size: medium;
+    margin: 0.5rem 0;
+}
+
+.p {
+    color: gray;
+    font-family: var(--font-montserrat);
+    margin-top: 0.5rem;
+    word-break: break-word;   /* break long words if needed */
+    white-space: normal;      /* allow text to wrap to next line */
+}
+
+
+/* Tablet */
+@media (max-width: 1023px) {
+  /* Tablet styles here */
+
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  /* Mobile styles here */
+  .card {
+    flex: 0 0 auto;
+    justify-content: start;
+    width: 300px;
+    height: 280;
+  }
+  .span {
+    font-size: 3rem;
+  }
+} 

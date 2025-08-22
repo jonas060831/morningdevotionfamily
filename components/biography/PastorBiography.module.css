@@ -1,0 +1,35 @@
+.pastorPicture {
+    position: relative;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 100vw;
+    overflow: hidden;
+    border: 4px solid #ffae00;
+
+}
+
+.description {
+ color: gray;
+ line-height: 230%;
+}
+
+
+/* Tablet */
+@media (max-width: 1023px) {
+  /* Tablet styles here */
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  /* Mobile styles here */
+  .pastorPicture {
+    width: 7rem;
+    height: 7rem;
+  }
+  .description {
+    line-height: normal;
+    font-size: smaller;
+  }
+
+}
+

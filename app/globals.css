@@ -25,10 +25,9 @@ a {
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background-color: #fff;
-  color: #000;
+  font-family: var(--font-inter), var(--font-montserrat), var(--font-poiretOne),var(--font-pollerOne);
+  background-color: #262626;
+  color: white;
   overflow-x: hidden;
 }
 
@@ -66,6 +65,29 @@ button {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+
+.snap_container { 
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100vh;
+}
+.snap_item {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: start;
+}
+
+.containerWithBorder {
+  background-color: white;
+  width: 100%;
+  height: 100%;
+
 }
 
 

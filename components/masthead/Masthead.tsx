@@ -1,33 +1,48 @@
-"use client"
-import React from 'react'
-import styles from './Masthead.module.css'
-import OutlineButton from '../buttons/OutlineButton'
+"use client";
+import React from "react";
+import styles from "./Masthead.module.css";
+import OutlineButton from "../buttons/OutlineButton";
+import Image from "next/image";
+import { motion } from "framer-motion";
 
 const Masthead = () => {
   return (
-    <div className={styles.masthead_container}>
-        
-        <img
-         className={styles.dtcLogo}
-         src="/assets/images/logos/dtc.png" alt="dtc logo"
+    <motion.div
+      className={styles.masthead_container}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 2.2, ease: "easeOut" }}
+    >
+      <div style={{ position: "relative", width: "300px", height: "400px" }}>
+        <Image
+          src="/assets/images/logos/dtc.png"
+          alt="dtc logo"
+          fill
+          style={{
+            objectFit: "contain",
+            pointerEvents: "none",
+            outline: "none",
+            filter: "drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.5))",
+          }}
         />
+      </div>
 
-        <p className={styles.header}>Devoted to Christ</p>
+      <p className={styles.header}>Devoted to Christ</p>
 
-        <p className={styles.subheader}>Global Ministry</p>
+      <p className={styles.subheader}>Global Ministry</p>
 
-        <OutlineButton
-         children={
+      <OutlineButton
+        children={
           <div className={styles.buttonContent}>
             <div className={styles.redDot}></div>
             <p>Watch Live</p>
           </div>
-         }
-         onClick={() => alert(123)}
-         color='white'
-        />
-    </div>
-  )
-}
+        }
+        onClick={() => {}}
+        color="white"
+      />
+    </motion.div>
+  );
+};
 
-export default Masthead
+export default Masthead;
