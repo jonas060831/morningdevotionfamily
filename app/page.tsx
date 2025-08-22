@@ -1,4 +1,5 @@
 import PastorBiography from "@/components/biography/PastorBiography";
+import DidYouKnow from "@/components/didYouKnow/DidYouKnow";
 import MapSinglePointComponent from "@/components/maps/MapSinglePointComponent";
 import UpDownControls from "@/components/maps/UpDownControls";
 import Masthead from "@/components/masthead/Masthead";
@@ -34,10 +35,21 @@ import ServicesPreview from "@/components/servicespreview/ServicesPreview";
        className="snapItem"
        id="ChurchLocation"
       >
+        <MapSinglePointComponent
+         latitude={33.82496}
+         longitude={-118.26407}
+         zoom={15}
+         animationDuration={60}
+         controls={<UpDownControls/>}
+        />
 
-        {/* lat 33.82496 long -118.26407 */}
-        <MapSinglePointComponent latitude={33.82496} longitude={-118.26407} zoom={14} controls={<UpDownControls/>}/>
+      </section>
 
+      <section
+       className="snapItem"
+       id="didYouKnow"
+      >
+        <DidYouKnow />
       </section>
     </div>
   );

@@ -1,0 +1,25 @@
+.container {
+    background-image: url('/assets/images/bgs/weirdshape.png');
+    background-size: 100% 100%;
+    background-position: center center;
+    min-height: 100vh;
+    width: 100vw;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.header {
+    font-family: var(--font-poiretOne);
+    font-size: 5rem;
+}
+
+.text {
+    font-family: var(--font-monserrat);
+    color: black;
+    width: 300px;
+    height: 200px;
+}
