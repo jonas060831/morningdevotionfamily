@@ -1,0 +1,7 @@
+.textInput {
+    border-radius: 100vw;
+    border: 2px solid black;
+    width: 100%;
+    padding: 0.5rem;
+    padding-left: 1rem;
+}

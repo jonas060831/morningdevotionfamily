@@ -55,11 +55,12 @@ const ServicesPreview = () => {
 
   return (
     <div className={styles.container}>
+      <br />
       <div className={styles.header}>
         <TitleAndDescription
           title="Our Ministry Services"
           description="Discover meaningful ways to grow in faith, connect with community, and celebrate life's sacred moments"
-          titleFontSize={4}
+          titleFontSize={3}
           descriptionFontSize={1.5}
         />
       </div>

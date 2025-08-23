@@ -3,7 +3,6 @@ import { Inter, Poiret_One, Montserrat, Poller_One } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 
-
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"]
@@ -38,11 +37,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${poiretOne.variable} ${montserrat.variable} ${pollerOne.variable} container`}>
+      <body
+       className={`${inter.variable} ${poiretOne.variable} ${montserrat.variable} ${pollerOne.variable} container`}
+      >
 
         <Navbar />
         <div className="container">
           {children}
+
         </div>
       </body>
     </html>
