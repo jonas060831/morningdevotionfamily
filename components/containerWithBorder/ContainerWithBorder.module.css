@@ -17,8 +17,8 @@
   width: 130px;
   height: 130px;
   position: absolute;
-  top: 60;
-  left: 4;
+  top: 60px;
+  left: 4px;
   background-repeat: no-repeat;
 }
 
@@ -27,8 +27,8 @@
   width: 130px;
   height: 130px;
   position: absolute;
-  bottom: 5;
-  right: 15;
+  bottom: 5px;
+  right: 15px;
 }
 
 
