@@ -29,6 +29,7 @@ body {
   background-color: #262626;
   color: white;
   overflow-x: hidden;
+  overscroll-behavior-y: none;
 }
 
 /* Make media elements responsive */
@@ -83,6 +84,15 @@ button {
   scroll-snap-align: start;
 }
 
+.snapItemFooter {
+  height: 35rem;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: start;
+}
+
 .containerWithBorder {
   background-color: white;
   width: 100%;
@@ -99,6 +109,7 @@ button {
 /* Mobile */
 @media (max-width: 767px) {
   /* Mobile styles here */
+
 }
 
 

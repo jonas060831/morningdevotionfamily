@@ -1,0 +1,26 @@
+.header {
+    font-family: var(--font-poiretOne);
+    font-size: large;
+    width: 450px;
+}
+
+.emailAddressContainer {
+    width: 450px;
+}
+
+/* Tablet */
+@media (max-width: 1023px) {
+  /* Tablet styles here */
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  /* Mobile styles here */
+    .header {
+        padding: 0rem 2rem;
+        font-size: large;
+    }
+    .emailAddressContainer {
+        padding: 0rem 2rem;
+    }
+}

@@ -7,8 +7,8 @@ const UpDownControls = () => {
 
   const handleClick = (direction: string) => {
 
-    const upperSection = document.getElementById('servicesPreview')
-    const belowSection = document.getElementById('didYouKnow')
+    const upperSection = document.getElementById('didYouKnow')
+    const belowSection = document.getElementById('footer')
     direction === 'up' ? upperSection?.scrollIntoView({behavior: "smooth"}) : belowSection?.scrollIntoView({ behavior: "smooth" })
   }
   return (

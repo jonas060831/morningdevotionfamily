@@ -1,5 +1,6 @@
 import PastorBiography from "@/components/biography/PastorBiography";
 import DidYouKnow from "@/components/didYouKnow/DidYouKnow";
+import Footer from "@/components/footer/Footer";
 import MapSinglePointComponent from "@/components/maps/MapSinglePointComponent";
 import UpDownControls from "@/components/maps/UpDownControls";
 import Masthead from "@/components/masthead/Masthead";
@@ -31,6 +32,14 @@ import ServicesPreview from "@/components/servicespreview/ServicesPreview";
         <ServicesPreview />
       </section>
 
+
+      <section
+       className="snapItem"
+       id="didYouKnow"
+      >
+        <DidYouKnow />
+      </section>
+
       <section
        className="snapItem"
        id="ChurchLocation"
@@ -46,11 +55,12 @@ import ServicesPreview from "@/components/servicespreview/ServicesPreview";
       </section>
 
       <section
-       className="snapItem"
-       id="didYouKnow"
+       className="snapItemFooter"
+       id="footer"
       >
-        <DidYouKnow />
+        <Footer/>
       </section>
+
     </div>
   );
 }

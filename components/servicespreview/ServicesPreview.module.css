@@ -12,11 +12,13 @@
 
 .header {
     width: 750px;
+    text-align: center;
 }
 
 .servicesFlex {
     display: flex;
     gap: 3rem;
+    justify-content: space-around;
 }
 
 .footnote {
