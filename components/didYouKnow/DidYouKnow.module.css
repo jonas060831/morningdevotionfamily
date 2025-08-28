@@ -2,6 +2,7 @@
     background-image: url('/assets/images/bgs/weirdshape.png');
     background-size: 100% 100%;
     background-position: center center;
+    background-repeat: no-repeat;
     min-height: 100vh;
     width: 100vw;
     color: black;
