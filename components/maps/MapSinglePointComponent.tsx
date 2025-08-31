@@ -175,7 +175,7 @@ const MapSinglePointComponent: FC<MapSinglePointComponentProps> = ({
           isInView={isInView}
         />
 
-        <Marker latitude={latitude} longitude={longitude} anchor="center">
+        {/* <Marker latitude={latitude} longitude={longitude} anchor="center">
           <div
             style={{
               width: "30px",
@@ -203,7 +203,23 @@ const MapSinglePointComponent: FC<MapSinglePointComponentProps> = ({
               }}
             />
           </div>
-        </Marker>
+        </Marker> */}
+
+        <Marker latitude={latitude} longitude={longitude} anchor="center">
+          <img
+            src="/assets/gifs/MdfPin.gif"
+            alt="Map Pin"
+            style={{
+              width: "250px",
+              height: "250px",
+              transform: "translate(5%, -30%)", // centers pin properly on map point
+              cursor: "pointer",
+              userSelect: "none",
+              pointerEvents: "none", // makes sure map interactions still work
+            }}
+          />
+        </Marker>`
+
 
         {showPopup && (
           <div

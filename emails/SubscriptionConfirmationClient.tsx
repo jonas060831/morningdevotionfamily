@@ -131,7 +131,7 @@ const button = {
   border: "2px solid black",
   textDecoration: "none",
   fontWeight: "bold",
-  fontFamily: "'Poiret One', cursive",
+  fontFamily: "Poiret One",
 };
 
 const footer = {
