@@ -17,6 +17,8 @@ type MapSinglePointComponentProps = {
   animationDuration?: number;
   viewAngle?: number; // 0 = top-down, 60 = max side angle
   controls?: ReactNode;
+  mapboxToken: string;
+  mapboxStyle: string;
 };
 
 const AnimatedMapContent: FC<{
@@ -94,7 +96,9 @@ const MapSinglePointComponent: FC<MapSinglePointComponentProps> = ({
   autoAnimate = true,
   animationDuration = 30,
   viewAngle = 45,
-  controls
+  controls,
+  mapboxToken,
+  mapboxStyle
 }) => {
   const [showControls, setShowControls] = useState(false);
   const [isManualAnimating, setIsManualAnimating] = useState(false);
@@ -156,8 +160,8 @@ const MapSinglePointComponent: FC<MapSinglePointComponentProps> = ({
         ref={mapRef}
         initialViewState={{ latitude, longitude, zoom }}
         style={{ width: "100%", height: "100%" }}
-        mapStyle={process.env.MAPBOX_STYLE || "mapbox://styles/mapbox/streets-v12"}
-        mapboxAccessToken={process.env.MAPBOX_TOKEN}
+        mapStyle={mapboxStyle || "mapbox://styles/mapbox/streets-v12"}
+        mapboxAccessToken={mapboxToken}
         onMouseEnter={() => setShowControls(true)}
         onMouseLeave={() => setShowControls(false)}
       >

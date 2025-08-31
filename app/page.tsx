@@ -8,6 +8,10 @@ import ServicesPreview from "@/components/servicespreview/ServicesPreview";
 
 
  const Home = () => {
+
+  const mapboxToken = process.env.MAPBOX_TOKEN
+  const mapboxStyle = process.env.MAPBOX_STYLE
+
   return (
     <div className="snapContainer">
       
@@ -50,6 +54,8 @@ import ServicesPreview from "@/components/servicespreview/ServicesPreview";
          zoom={15}
          animationDuration={60}
          controls={<UpDownControls/>}
+         mapboxToken={mapboxToken!}
+         mapboxStyle={mapboxStyle!}
         />
 
       </section>

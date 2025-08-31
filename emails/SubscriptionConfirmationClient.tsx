@@ -44,7 +44,7 @@ export const SubscriptionConfirmationClient = () => {
             </Text>
 
             <Section style={{ textAlign: "center", marginTop: "30px" }}>
-              <Link href="https://morningdevotionfamily.com" style={button}>
+              <Link href="https://morningdevotionfamily.com" style={button2}>
                 Visit Our Website
               </Link>
             </Section>
@@ -121,6 +121,19 @@ const button = {
   borderRadius: "6px",
   textDecoration: "none",
   fontWeight: "bold",
+};
+
+
+const button2 = {
+  display: "inline-block",
+  backgroundColor: "white",
+  color: "black",
+  padding: "12px 24px",
+  borderRadius: "100vw",
+  border: "2px solid black",
+  textDecoration: "none",
+  fontWeight: "bold",
+  fontFamily: ""
 };
 
 const footer = {
