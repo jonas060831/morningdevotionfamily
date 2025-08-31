@@ -8,7 +8,6 @@ import { subscribeNewUser } from '@/app/(server)/subscribe'
 import { useSystemMessage } from '../modals/notification/systemMessage/SystemMessageManager'
 import { sendSubscriptionConfirmationEmailToClient } from '@/app/(server)/emails/clients/subscription'
 import { renderToStaticMarkup } from 'react-dom/server'
-import TestEmail from '@/emails/test-email'
 import SubscriptionConfirmationClient from '@/emails/SubscriptionConfirmationClient'
 
 const EmailSubscription = () => {
