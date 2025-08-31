@@ -156,8 +156,8 @@ const MapSinglePointComponent: FC<MapSinglePointComponentProps> = ({
         ref={mapRef}
         initialViewState={{ latitude, longitude, zoom }}
         style={{ width: "100%", height: "100%" }}
-        mapStyle={process.env.NEXT_PUBLIC_MAPBOX_STYLE || "mapbox://styles/mapbox/streets-v12"}
-        mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
+        mapStyle={process.env.MAPBOX_STYLE || "mapbox://styles/mapbox/streets-v12"}
+        mapboxAccessToken={process.env.MAPBOX_TOKEN}
         onMouseEnter={() => setShowControls(true)}
         onMouseLeave={() => setShowControls(false)}
       >

@@ -1,0 +1,80 @@
+/* Container for all messages */
+.container {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Individual message */
+.toast {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-size: 14px;
+  color: black;
+  animation: slideInBottom 0.3s ease-out, vibrate 0.3s linear;
+  background-color: white;
+  margin-bottom: 1rem;
+}
+
+/* Vibrate effect */
+@keyframes vibrate {
+  0% { transform: translateY(0) translateX(0); }
+  10% { transform: translateY(0) translateX(-2px); }
+  20% { transform: translateY(0) translateX(2px); }
+  30% { transform: translateY(0) translateX(-2px); }
+  40% { transform: translateY(0) translateX(2px); }
+  50% { transform: translateY(0) translateX(-2px); }
+  60% { transform: translateY(0) translateX(2px); }
+  70% { transform: translateY(0) translateX(-2px); }
+  80% { transform: translateY(0) translateX(2px); }
+  90% { transform: translateY(0) translateX(-2px); }
+  100% { transform: translateY(0) translateX(0); }
+}
+
+/* Slide-in from bottom */
+@keyframes slideInBottom {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Variants */
+/* .success { background-color: #16a34a; }
+.error { background-color: #dc2626; }
+.info { background-color: #2563eb; }
+.loading { background-color: #6b7280; } */
+
+.icon {
+  position: relative;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+
+
+/* Tablet */
+@media (max-width: 1023px) {
+  /* Tablet styles here */
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  /* Mobile styles here */
+  .toast {
+    width: 60vw;
+  }
+}

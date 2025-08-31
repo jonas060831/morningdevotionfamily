@@ -1,18 +1,3 @@
-.container {
-    background-image: url('/assets/images/bgs/weirdshape.png');
-    background-size: 100% 100%;
-    background-position: center center;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-    width: 100vw;
-    color: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 1rem;
-}
-
 .header {
     font-family: var(--font-poiretOne);
     font-size: 5rem;
@@ -28,22 +13,11 @@
 /* Tablet */
 @media (max-width: 1023px) {
   /* Tablet styles here */
-
-  .container {
-    background-image: url('/assets/images/bgs/weirdshapetablet.png');
-    background-size: contain;
-    background-size: 100% 90%;
-  }
 }
 
 /* Mobile */
 @media (max-width: 767px) {
   /* Mobile styles here */
-  .container {
-    background-image: url('/assets/images/bgs/weirdshapemobile.png');
-    background-size: contain;
-    background-size: 100% 90%;
-  }
   .header {
     font-size: 3rem;
   }
