@@ -210,9 +210,9 @@ const MapSinglePointComponent: FC<MapSinglePointComponentProps> = ({
             src="/assets/gifs/MdfPin.gif"
             alt="Map Pin"
             style={{
-              width: "350px",
-              height: "350px",
-              transform: "translate(5%, -30%)", // centers pin properly on map point
+              width: "400px",
+              height: "300px",
+              transform: "translate(1%, -35%)", // centers pin properly on map point
               cursor: "pointer",
               userSelect: "none",
               pointerEvents: "none", // makes sure map interactions still work
