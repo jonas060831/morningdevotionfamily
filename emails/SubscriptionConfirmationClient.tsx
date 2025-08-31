@@ -13,7 +13,16 @@ import {
 export const SubscriptionConfirmationClient = () => {
   return (
     <Html>
-      <Head />
+      
+      <Head>
+        {/* Import Poiret One from Google Fonts */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
+
+
       <Preview>
         Welcome to Morning Devotion Family — Your daily encouragement
         awaits!
@@ -44,7 +53,7 @@ export const SubscriptionConfirmationClient = () => {
             </Text>
 
             <Section style={{ textAlign: "center", marginTop: "30px" }}>
-              <Link href="https://morningdevotionfamily.com" style={button2}>
+              <Link href="https://morningdevotionfamily.com" style={button}>
                 Visit Our Website
               </Link>
             </Section>
@@ -115,17 +124,6 @@ const paragraph = {
 
 const button = {
   display: "inline-block",
-  backgroundColor: "#3182ce",
-  color: "#ffffff",
-  padding: "12px 24px",
-  borderRadius: "6px",
-  textDecoration: "none",
-  fontWeight: "bold",
-};
-
-
-const button2 = {
-  display: "inline-block",
   backgroundColor: "white",
   color: "black",
   padding: "12px 24px",
@@ -133,7 +131,7 @@ const button2 = {
   border: "2px solid black",
   textDecoration: "none",
   fontWeight: "bold",
-  fontFamily: ""
+  fontFamily: "'Poiret One', cursive",
 };
 
 const footer = {
