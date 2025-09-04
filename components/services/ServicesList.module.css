@@ -1,0 +1,47 @@
+.header {
+    max-width: 600px;
+
+}
+
+.list {
+    display: flex;
+    gap: 3rem;
+    justify-content: space-around;
+    white-space: nowrap;
+    overflow-x: scroll;
+    width: 100vw;
+    padding: 2rem;
+}
+
+.list::-webkit-scrollbar {
+  width: 8px;
+}
+
+
+.list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+.list::-webkit-scrollbar-thumb {
+  background: #ff8400;
+  border-radius: 100vw;
+}
+
+/* Tablet */
+@media (max-width: 1023px) {
+  /* Tablet styles here */
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  /* Mobile styles here */
+  .list {
+        overflow-x: scroll;
+        overflow-y: hidden;
+        padding: 0.5rem 0rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+}

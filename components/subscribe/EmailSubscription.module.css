@@ -1,3 +1,9 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .header {
     font-family: var(--font-poiretOne);
     font-size: large;
@@ -5,7 +11,26 @@
 }
 
 .emailAddressContainer {
-    width: 450px;
+    width: 100%;
+    position: relative;
+}
+
+.emailAddressContainer input {
+    width: 100%;
+    padding-right: 45px; /* space for the icon */
+    height: 50px; /* match icon size */
+    box-sizing: border-box;
+}
+
+
+.iconContainer {
+    position: absolute;
+    top: 50%;
+    right: 15px; /* adjust for spacing */
+    transform: translateY(-50%);
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
 }
 
 /* Tablet */
@@ -21,6 +46,6 @@
         font-size: large;
     }
     .emailAddressContainer {
-        padding: 0rem 2rem;
+        width: 90vw;
     }
 }

@@ -1,0 +1,29 @@
+.container {
+    color: black;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 15px;
+    box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.285);
+    
+}
+
+
+.flexContainer {
+    display: flex;
+    margin-top: 1rem;
+    width: 80vw;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Tablet */
+@media (max-width: 1023px) {
+  /* Tablet styles here */
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  /* Mobile styles here */
+ 
+
+}

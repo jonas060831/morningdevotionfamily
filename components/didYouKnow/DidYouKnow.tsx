@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import styles from "./DidYouKnow.module.css"
+import ContainerWithWeirdShape from "../containerWithWeirdShape/ContainerWithWeirdShape"
 
 const didYouKnow = [
   { text: "Christianity is the world's largest religion, with over 2.3 billion followers globally." },
@@ -45,7 +46,7 @@ const DidYouKnow = () => {
   }, [currentIndex])
 
   return (
-    <div className={styles.container}>
+    <ContainerWithWeirdShape>
       <span className={styles.header}>Did You Know ?</span>
 
       <AnimatePresence mode="wait">
@@ -60,7 +61,7 @@ const DidYouKnow = () => {
           {displayedText}
         </motion.p>
       </AnimatePresence>
-    </div>
+    </ContainerWithWeirdShape>
   )
 }
 

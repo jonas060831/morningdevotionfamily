@@ -1,0 +1,44 @@
+.header {
+    font-family: var(--font-poiretOne);
+    font-size: 3rem;
+}
+
+
+.tableContainer {
+    width: 80vw;
+    text-align: left;
+    border-collapse: separate; /* important! */
+    border-spacing: 0 10px;   /* horizontal | vertical spacing */
+}
+
+
+.schedule thead {
+    background-color: rgba(255, 255, 255, 0.151);
+}
+
+.schedule th, .schedule td {
+    padding: 1rem;
+}
+
+
+.schedule tbody {
+    background-color: rgba(255, 255, 255, 0.151);
+}
+
+
+/* Tablet */
+@media (max-width: 1023px) {
+  /* Tablet styles here */
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  /* Mobile styles here */
+    .header {
+        font-size: 2rem;
+    }
+    .tableContainer {
+        width: 100vw;
+        font-size: smaller;
+    }
+}

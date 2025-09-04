@@ -17,6 +17,8 @@ type MapSinglePointComponentProps = {
   animationDuration?: number;
   viewAngle?: number; // 0 = top-down, 60 = max side angle
   controls?: ReactNode;
+  mapboxToken: string;
+  mapboxStyle: string;
 };
 
 const AnimatedMapContent: FC<{
@@ -94,7 +96,9 @@ const MapSinglePointComponent: FC<MapSinglePointComponentProps> = ({
   autoAnimate = true,
   animationDuration = 30,
   viewAngle = 45,
-  controls
+  controls,
+  mapboxToken,
+  mapboxStyle
 }) => {
   const [showControls, setShowControls] = useState(false);
   const [isManualAnimating, setIsManualAnimating] = useState(false);
@@ -156,8 +160,8 @@ const MapSinglePointComponent: FC<MapSinglePointComponentProps> = ({
         ref={mapRef}
         initialViewState={{ latitude, longitude, zoom }}
         style={{ width: "100%", height: "100%" }}
-        mapStyle={process.env.NEXT_PUBLIC_MAPBOX_STYLE || "mapbox://styles/mapbox/streets-v12"}
-        mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
+        mapStyle={mapboxStyle || "mapbox://styles/mapbox/streets-v12"}
+        mapboxAccessToken={mapboxToken}
         onMouseEnter={() => setShowControls(true)}
         onMouseLeave={() => setShowControls(false)}
       >
@@ -171,7 +175,7 @@ const MapSinglePointComponent: FC<MapSinglePointComponentProps> = ({
           isInView={isInView}
         />
 
-        <Marker latitude={latitude} longitude={longitude} anchor="center">
+        {/* <Marker latitude={latitude} longitude={longitude} anchor="center">
           <div
             style={{
               width: "30px",
@@ -199,7 +203,23 @@ const MapSinglePointComponent: FC<MapSinglePointComponentProps> = ({
               }}
             />
           </div>
-        </Marker>
+        </Marker> */}
+
+        <Marker latitude={latitude} longitude={longitude} anchor="center">
+          <img
+            src="/assets/gifs/MdfPin.gif"
+            alt="Map Pin"
+            style={{
+              width: "400px",
+              height: "300px",
+              transform: "translate(1%, -35%)", // centers pin properly on map point
+              cursor: "pointer",
+              userSelect: "none",
+              pointerEvents: "none", // makes sure map interactions still work
+            }}
+          />
+        </Marker>`
+
 
         {showPopup && (
           <div

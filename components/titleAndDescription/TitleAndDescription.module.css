@@ -21,15 +21,17 @@
 @media (max-width: 767px) {
   /* Mobile styles here */
   .container {
-    width: 100vw;
+    width: 98vw;
     text-align: center;
     margin: 0px auto;
   }
   .title {
     font-size: x-large !important;
     font-weight: 800;
+    word-wrap: break-word;
   }
   .description {
     font-size: small !important;
+    word-wrap: break-word;
   }
 } 

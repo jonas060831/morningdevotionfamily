@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import Link from "next/link";
 import styles from "./Navbar.module.css";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const scrollTreshold = 600;
 const Navbar = () => {
@@ -10,6 +12,9 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const controls = useAnimation();
+  const [isHidden, setIsHidden] = useState<boolean>(true)
+
+  const pathname = usePathname()
 
   useEffect(() => {
     const snapContainer = document.querySelector(".snapContainer");
@@ -38,6 +43,11 @@ const Navbar = () => {
     return () => snapContainer?.removeEventListener("scroll", handleScroll);
   }, [scrolled, controls, lastScrollY]);
 
+
+  useEffect(() => {
+    
+  })
+
   return (
     <>
       <div
@@ -54,14 +64,31 @@ const Navbar = () => {
         }}
       >
         <div className={styles.navContainer}>
-          <div className={styles.logo}></div>
+          <div
+           className={styles.logo}
+          >
+            
+            {
+              pathname != "/" &&
+              
+              <Link href="/">
+                <Image
+                src="/assets/svgs/icons/home.svg"
+                alt="home icon"
+                fill
+                />
+              </Link>
+
+            }
+
+          </div>
 
           {/* Desktop Menu */}
           <ul className={styles.navLinks}>
             <Link href="/give">Give</Link>
             <Link href="/services">Services</Link>
             <Link href="/roots">Roots</Link>
-            <Link href="/Contacts">Contacts</Link>
+            <Link href="/contacts">Contacts</Link>
           </ul>
 
           {/* Hamburger Button */}
@@ -87,7 +114,7 @@ const Navbar = () => {
               <Link href="/give" onClick={() => setMenuOpen(false)}>Give</Link>
               <Link href="/services" onClick={() => setMenuOpen(false)}>Services</Link>
               <Link href="/roots" onClick={() => setMenuOpen(false)}>Roots</Link>
-              <Link href="/Contacts" onClick={() => setMenuOpen(false)}>Contacts</Link>
+              <Link href="/contacts" onClick={() => setMenuOpen(false)}>Contacts</Link>
             </ul>
           </motion.div>
         </div>

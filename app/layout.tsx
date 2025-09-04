@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Poiret_One, Montserrat, Poller_One } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
+import { SystemMessageProvider } from "@/components/modals/notification/systemMessage/SystemMessageManager";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -40,12 +41,15 @@ export default function RootLayout({
       <body
        className={`${inter.variable} ${poiretOne.variable} ${montserrat.variable} ${pollerOne.variable} container`}
       >
+        
+        <SystemMessageProvider>
 
-        <Navbar />
-        <div className="container">
-          {children}
+          <Navbar />
+          <div className="container">
+            {children}
 
-        </div>
+          </div>
+        </SystemMessageProvider>
       </body>
     </html>
   );
