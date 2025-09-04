@@ -1,4 +1,5 @@
-import React from 'react'
+"use client"
+import React, { useState } from 'react'
 import TitleAndDescription from '../titleAndDescription/TitleAndDescription'
 
 import styles from './ServicesList.module.css'
@@ -7,6 +8,9 @@ import servicesData from '@/public/datas/servicesData'
 import SquareCard from '../cards/squareCard/SquareCard'
 
 const ServicesList = () => {
+
+  const [isGrabbing, setIsGrabbing] = useState(false);
+
   return (
     <div
      className="gradientContainer"
@@ -23,6 +27,10 @@ const ServicesList = () => {
 
       <div
        className={styles.list}
+       style={{ cursor: isGrabbing ? "grabbing" : "grab" }}
+       onMouseDown={() => setIsGrabbing(true)}
+       onMouseUp={() => setIsGrabbing(false)}
+       onMouseLeave={() => setIsGrabbing(false)}
       >
 
         {

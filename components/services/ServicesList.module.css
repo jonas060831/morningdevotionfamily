@@ -1,5 +1,6 @@
 .header {
     max-width: 600px;
+
 }
 
 .list {
@@ -25,7 +26,6 @@
 .list::-webkit-scrollbar-thumb {
   background: #ff8400;
   border-radius: 100vw;
-  cursor: pointer;
 }
 
 /* Tablet */

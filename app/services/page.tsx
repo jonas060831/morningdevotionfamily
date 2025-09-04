@@ -1,3 +1,4 @@
+import CallToAction from '@/components/calltoaction/CallToAction'
 import Footer from '@/components/footer/Footer'
 import ServicesList from '@/components/services/ServicesList'
 import React from 'react'
@@ -14,8 +15,11 @@ const Services = () => {
           <ServicesList />
         </section>
 
-        <section className="snapItem">
-            services page 2
+        <section
+         className="snapItem"
+         id='calltoaction'
+        >
+            <CallToAction />
         </section>
 
         <section
