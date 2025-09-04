@@ -88,7 +88,7 @@ const Navbar = () => {
             <Link href="/give">Give</Link>
             <Link href="/services">Services</Link>
             <Link href="/roots">Roots</Link>
-            <Link href="/Contacts">Contacts</Link>
+            <Link href="/contacts">Contacts</Link>
           </ul>
 
           {/* Hamburger Button */}
@@ -114,7 +114,7 @@ const Navbar = () => {
               <Link href="/give" onClick={() => setMenuOpen(false)}>Give</Link>
               <Link href="/services" onClick={() => setMenuOpen(false)}>Services</Link>
               <Link href="/roots" onClick={() => setMenuOpen(false)}>Roots</Link>
-              <Link href="/Contacts" onClick={() => setMenuOpen(false)}>Contacts</Link>
+              <Link href="/contacts" onClick={() => setMenuOpen(false)}>Contacts</Link>
             </ul>
           </motion.div>
         </div>

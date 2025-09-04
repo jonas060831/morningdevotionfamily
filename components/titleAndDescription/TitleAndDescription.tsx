@@ -19,7 +19,7 @@ const TitleAndDescription:FC<TitleAndDescriptionProps> = ({
     <div className={styles.container}>
         <h1 className={styles.title} style={{ fontSize: `${titleFontSize}rem` }} >{title}</h1>
 
-        <p className={styles.description} style={{ fontSize: `${descriptionFontSize}rem` }} >{description}</p>
+        <p className={styles.description} style={{ fontSize: `${descriptionFontSize}rem`, whiteSpace: "pre-line" }} >{description}</p>
     </div>
   )
 }
