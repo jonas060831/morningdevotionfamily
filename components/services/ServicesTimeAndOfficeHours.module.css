@@ -9,12 +9,11 @@
     text-align: left;
     border-collapse: separate; /* important! */
     border-spacing: 0 10px;   /* horizontal | vertical spacing */
-
 }
+
 
 .schedule thead {
     background-color: rgba(255, 255, 255, 0.151);
-
 }
 
 .schedule th, .schedule td {
