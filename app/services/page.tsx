@@ -1,6 +1,7 @@
 import CallToAction from '@/components/calltoaction/CallToAction'
 import Footer from '@/components/footer/Footer'
 import ServicesList from '@/components/services/ServicesList'
+import ServicesTimeAndOfficeHours from '@/components/services/ServicesTimeAndOfficeHours'
 import React from 'react'
 
 const Services = () => {
@@ -19,8 +20,16 @@ const Services = () => {
          className="snapItem"
          id='calltoaction'
         >
-            <CallToAction />
+          <CallToAction />
         </section>
+
+        <section
+         className="snapItem"
+         id='servicestimesandofficehours'
+        >
+          <ServicesTimeAndOfficeHours />
+        </section>
+
 
         <section
         className="snapItemFooter"
