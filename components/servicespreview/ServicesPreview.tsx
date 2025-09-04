@@ -5,6 +5,7 @@ import TitleAndDescription from '../titleAndDescription/TitleAndDescription'
 import SquareCard from '../cards/squareCard/SquareCard'
 import DashedBorderCard from '../cards/dashedBorderCard/DashedBorderCard'
 import OutlineButton from '../buttons/OutlineButton'
+import { useRouter } from 'next/navigation'
 
 const servicesThumbnails = [
     {
@@ -30,6 +31,8 @@ const servicesThumbnails = [
 const ServicesPreview = () => {
   const scrollableContainer = useRef<HTMLDivElement>(null);
 
+  const router = useRouter()
+
   useEffect(() => {
     const container = scrollableContainer.current;
     if (!container) return;
@@ -54,7 +57,7 @@ const ServicesPreview = () => {
   }, []);
 
   return (
-    <div className={styles.container}>
+    <div className="gradientContainer">
       <br />
       <div className={styles.header}>
         <TitleAndDescription
@@ -73,6 +76,7 @@ const ServicesPreview = () => {
             icon={item.icon}
             title={item.title}
             description={item.description}
+            onClick={() => { if(id === 3) router.push("/services") }}
           />
         ))}
       </div>
@@ -88,7 +92,7 @@ const ServicesPreview = () => {
         </DashedBorderCard>
       </div>
 
-      <OutlineButton onClick={() => console.log("go to services page")} color="white">
+      <OutlineButton onClick={() => router.push('/services') } color="white">
         Discover All our Services
       </OutlineButton>
     </div>

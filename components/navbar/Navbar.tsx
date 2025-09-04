@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import Link from "next/link";
 import styles from "./Navbar.module.css";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const scrollTreshold = 600;
 const Navbar = () => {
@@ -10,6 +12,9 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const controls = useAnimation();
+  const [isHidden, setIsHidden] = useState<boolean>(true)
+
+  const pathname = usePathname()
 
   useEffect(() => {
     const snapContainer = document.querySelector(".snapContainer");
@@ -38,6 +43,11 @@ const Navbar = () => {
     return () => snapContainer?.removeEventListener("scroll", handleScroll);
   }, [scrolled, controls, lastScrollY]);
 
+
+  useEffect(() => {
+    
+  })
+
   return (
     <>
       <div
@@ -54,7 +64,24 @@ const Navbar = () => {
         }}
       >
         <div className={styles.navContainer}>
-          <div className={styles.logo}></div>
+          <div
+           className={styles.logo}
+          >
+            
+            {
+              pathname != "/" &&
+              
+              <Link href="/">
+                <Image
+                src="/assets/svgs/icons/home.svg"
+                alt="home icon"
+                fill
+                />
+              </Link>
+
+            }
+
+          </div>
 
           {/* Desktop Menu */}
           <ul className={styles.navLinks}>

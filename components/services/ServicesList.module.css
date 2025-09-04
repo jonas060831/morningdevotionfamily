@@ -1,35 +1,47 @@
-
 .header {
-    width: 750px;
-    text-align: center;
+    max-width: 600px;
 }
 
-.servicesFlex {
+.list {
     display: flex;
     gap: 3rem;
     justify-content: space-around;
+    white-space: nowrap;
+    overflow-x: scroll;
+    width: 100vw;
+    padding: 2rem;
 }
 
-.footnote {
-    text-align: center;
+.list::-webkit-scrollbar {
+  width: 8px;
+}
+
+
+.list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+.list::-webkit-scrollbar-thumb {
+  background: #ff8400;
+  border-radius: 100vw;
+  cursor: pointer;
 }
 
 /* Tablet */
 @media (max-width: 1023px) {
   /* Tablet styles here */
-
 }
 
 /* Mobile */
 @media (max-width: 767px) {
   /* Mobile styles here */
-    .servicesFlex {
+  .list {
         overflow-x: scroll;
-        width: 100vw;
         overflow-y: hidden;
         padding: 0.5rem 0rem;
         padding-left: 1rem;
         padding-right: 1rem;
-        white-space: nowrap;
     }
-} 
+
+}
