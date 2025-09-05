@@ -6,14 +6,12 @@ import Avatar from "../cards/avatar/Avatar"
 
 const ContactDetails = () => {
   return (
-    <div
-     className="gradientContainer"
-    >
+    <>
         <div
          className={styles.container}
         >
             <TitleAndDescription
-             title="Contact Us"
+             title="Rest for those who come to me"
              titleFontSize={2}
              description={`Come to me, all you who are weary and burdened, and I will give you rest. \n\n Matthew 11:28`}
              descriptionFontSize={1}
@@ -40,7 +38,7 @@ const ContactDetails = () => {
             </div>
 
         </div>
-    </div>
+    </>
   )
 }
 
