@@ -66,32 +66,33 @@ const ContactUsForm = () => {
 
       try {
 
-        //reset form values
-        setFormData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          number: "",
-          topic: "",
-          message: "",
-          receiveUpdates: false,
-          urgent: false,
-        })
-        
-
         //send the email
         const res = await sendContactMessageToAdmin(contactAdminNotification)
         
         console.log(res)
         if(res.success) {
           
-          //remove loading state
+          
 
           const res2 = await sendContactUsConfirmationToClient(contactUsConfirmationNotification, formData.email)
 
           if(res2.success) {
               showMessage(res.message, "success")
+              
+              //remove loading state
               setIsLoading(false)
+
+              //reset form values
+              setFormData({
+                firstName: "",
+                lastName: "",
+                email: "",
+                number: "",
+                topic: "",
+                message: "",
+                receiveUpdates: false,
+                urgent: false,
+              })
           }
           
         }
