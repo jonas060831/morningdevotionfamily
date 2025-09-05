@@ -36,7 +36,7 @@ const servicesData = [
   {
     icon: "👼🏼",
     title: "Child Dedication",
-    description: "A service where parents dedicate their child to God with the church’s prayers and support."
+    description: "A service where parents dedicate their child to God with the church’s prayers & support."
   }
 ]
 

@@ -26,9 +26,10 @@ const Roots = () => {
         <section
          className="snapItem"
          id="lookingForward"
+         style={{ backgroundImage: "linear-gradient(to bottom right,grey,white, darkblue)" }}
         >
             <div
-             style={{ width: '80vw', backgroundColor: 'white', color: 'black', padding: '1rem', borderRadius: '1rem',  }}
+             style={{ width: '80vw', color: 'black', padding: '1rem', borderRadius: '1rem',  }}
             >
                 <SubTitleAndDescription
                 subTitle='Looking Forward'
