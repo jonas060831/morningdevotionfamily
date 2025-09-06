@@ -1,0 +1,28 @@
+.leadershipList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.leadershipList > * {
+    flex: 1 1 calc(50% - 1rem);
+    box-sizing: border-box;
+}
+
+/* Tablet */
+@media (max-width: 1023px) {
+  /* Tablet styles here */
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  /* Mobile styles here */
+  .leadershipList {
+    gap: 0.3rem;
+    width: 70%;
+  }
+  .leadershipList > * {
+    flex: 1 1 100%;
+  }
+
+}

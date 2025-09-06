@@ -1,0 +1,52 @@
+.floatingGroup {
+  position: relative;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.input {
+  width: 100%;
+  padding: 1rem 0.75rem;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  outline: none;
+  background: white;
+}
+
+.input:focus {
+  border-color: #3b82f6;
+}
+
+.label {
+  position: absolute;
+  left: 0.75rem;
+  top: 1rem;
+  color: #666;
+  font-size: 1rem;
+  pointer-events: none;
+  transition: 0.2s ease all;
+}
+
+/* Active or filled state */
+.active .label {
+  top: -0.5rem;
+  left: 0.6rem;
+  font-size: 0.75rem;
+  background: white;
+  padding: 0 0.25rem;
+  color: #3b82f6;
+}
+
+
+/* Tablet */
+@media (max-width: 1023px) {
+  /* Tablet styles here */
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  /* Mobile styles here */
+
+}
+

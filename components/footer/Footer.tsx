@@ -5,16 +5,17 @@ import Link from 'next/link'
 import EmailSubscription from '../subscribe/EmailSubscription'
 
 const siteMap = [
+    { text: 'Home', url: '/' },
     { text: 'Give', url: '/give' },
-    { text: 'Roots', url: '' },
-    { text: 'Essence', url: '' },
-    { text: 'User Agreement', url: '' },
-    { text: 'Services', url: '' },
-    { text: 'Contacts', url: '' },
-    { text: 'Privacy Policy', url: '' },
-    { text: 'Feedback', url: '' },
-    { text: 'Our Community', url: '' },
-    { text: 'FAQs', url: '' }
+    { text: 'Roots', url: 'roots' },
+    // { text: 'Essence', url: '' },
+    // { text: 'User Agreement', url: '' },
+    { text: 'Services', url: '/services' },
+    { text: 'Contacts', url: '/contacts' },
+    // { text: 'Privacy Policy', url: '' },
+    // { text: 'Feedback', url: '' },
+    // { text: 'Our Community', url: '' },
+    // { text: 'FAQs', url: '' }
 ]
 
 const socials = [
