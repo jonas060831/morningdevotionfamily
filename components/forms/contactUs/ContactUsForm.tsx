@@ -9,6 +9,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import ContactFormNotificationEmail from "@/emails/ContactFormNotificationAdmin";
 import { sendContactMessageToAdmin, sendContactUsConfirmationToClient } from "@/app/(server)/contactUs";
 import ContactFormConfirmationEmailClient from "@/emails/ContactFormConfirmationEmailClient";
+import validEmail from "@/app/utils/validEmail";
 
 const ContactUsForm = () => {
   const [formData, setFormData] = useState({
@@ -47,7 +48,13 @@ const ContactUsForm = () => {
         showMessage(`${emptyField.label} cannot be empty`, "info");
         setIsLoading(false);
         return;
-      }
+    }
+
+    if(!validEmail(formData.email)) {
+      showMessage('Invalid Email', "error")
+      setIsLoading(false)
+      return
+    }
 
     if(formData.receiveUpdates) console.log('subscribe the user as well')
     
@@ -60,6 +67,7 @@ const ContactUsForm = () => {
         <ContactFormNotificationEmail {...formData}/>
       )
 
+      //automated message to user that we received their message
       const contactUsConfirmationNotification = renderToStaticMarkup(
         <ContactFormConfirmationEmailClient {...formData}/>
       )
