@@ -14,9 +14,8 @@
 }
 
 .list::-webkit-scrollbar {
-  width: 8px;
+  height: 12px;
 }
-
 
 .list::-webkit-scrollbar-track {
   background: transparent;
@@ -24,8 +23,7 @@
 
 
 .list::-webkit-scrollbar-thumb {
-  background: white;
-  border: 1px solid black;
+  background: rgba(0, 0, 0, 0.562);
   border-radius: 100vw;
 }
 

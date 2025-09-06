@@ -12,7 +12,6 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const controls = useAnimation();
-  const [isHidden, setIsHidden] = useState<boolean>(true)
 
   const pathname = usePathname()
 
@@ -42,11 +41,6 @@ const Navbar = () => {
     snapContainer?.addEventListener("scroll", handleScroll);
     return () => snapContainer?.removeEventListener("scroll", handleScroll);
   }, [scrolled, controls, lastScrollY]);
-
-
-  useEffect(() => {
-    
-  })
 
   return (
     <>
@@ -85,10 +79,34 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <ul className={styles.navLinks}>
-            <Link href="/give">Give</Link>
-            <Link href="/services">Services</Link>
-            <Link href="/roots">Roots</Link>
-            <Link href="/contacts">Contacts</Link>
+            
+            <Link
+              href="/give"
+              className={pathname === "/give" ? styles.activeLink : ""}
+            >
+              Give
+            </Link>
+
+            <Link
+              href="/services"
+              className={pathname === "/services" ? styles.activeLink : ""}
+            >
+              Services
+            </Link>
+
+            <Link
+              href="/roots"
+              className={pathname === "/roots" ? styles.activeLink : ""}
+            >
+              Roots
+            </Link>
+
+            <Link
+              href="/contacts"
+              className={pathname === "/contacts" ? styles.activeLink : ""}
+            >
+              Contacts
+            </Link>
           </ul>
 
           {/* Hamburger Button */}

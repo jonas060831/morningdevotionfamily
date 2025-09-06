@@ -45,11 +45,12 @@ const OneTime: FC<OneTimeProps> = ({ stripePublishableKey }) => {
 
       {/* Show input for custom amount */}
       {amount === "other" && (
-        <div style={{ margin: "10px 0" }}>
+        <div style={{ margin: "10px 0", padding: '0.8rem', border: '1px solid #dddddd', borderRadius: '10px' }}>
           <input
             type="number"
             placeholder="Enter amount"
             value={customAmount ?? ""}
+            style={{ width: '100%' }}
             onChange={(e) => setCustomAmount(Number(e.target.value))}
             min={1}
           />
@@ -128,10 +129,14 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ amount }) => {
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <h4>Enter Card Details</h4>
+      <h4 style={{ fontFamily: "var(--font-poiretOne)" }}>Enter Card Details</h4>
       <CardElement className={styles.cardElement} />
-      <button type="submit" disabled={!stripe || loading} className={styles.payBtn}>
-        {loading ? "Processing..." : `Give $${amount}`}
+      <button
+       type="submit"
+       disabled={!stripe || loading}
+       className={styles.payBtn}
+      >
+        {loading ? "Processing..." : `Give $${amount.toFixed(2)}`}
       </button>
     </form>
   );
