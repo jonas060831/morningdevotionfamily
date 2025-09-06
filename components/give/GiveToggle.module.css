@@ -1,0 +1,43 @@
+.paymentToggle {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  background: #fff;
+  font-family: Arial, sans-serif;
+  color: black;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-family: var(--font-poiretOne);
+}
+
+.options {
+  display: flex;
+  gap: 10px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.disabled {
+  color: #999;
+  cursor: not-allowed;
+}
+
+.displayBox {
+  margin-top: 20px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #f9f9f9;
+  text-align: center;
+}
