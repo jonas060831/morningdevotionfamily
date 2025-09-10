@@ -7,13 +7,20 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const scrollTreshold = 600;
+
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const controls = useAnimation();
 
-  const pathname = usePathname()
+  const [mounted, setMounted] = useState(false)
+  const pathname = usePathname();
+  const isAdmin = pathname.startsWith("/admin");
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     const snapContainer = document.querySelector(".snapContainer");
@@ -42,6 +49,13 @@ const Navbar = () => {
     return () => snapContainer?.removeEventListener("scroll", handleScroll);
   }, [scrolled, controls, lastScrollY]);
 
+
+  if(!mounted) return null
+
+  // 🔑 Don’t render anything if in admin route
+  if (isAdmin) return null;
+
+
   return (
     <>
       <div
@@ -58,49 +72,34 @@ const Navbar = () => {
         }}
       >
         <div className={styles.navContainer}>
-          <div
-           className={styles.logo}
-          >
-            
-            {
-              pathname != "/" &&
-              
+          <div className={styles.logo}>
+            {pathname !== "/" && (
               <Link href="/">
-                <Image
-                src="/assets/svgs/icons/home.svg"
-                alt="home icon"
-                fill
-                />
+                <Image src="/assets/svgs/icons/home.svg" alt="home icon" fill />
               </Link>
-
-            }
-
+            )}
           </div>
 
           {/* Desktop Menu */}
           <ul className={styles.navLinks}>
-            
             <Link
               href="/give"
               className={pathname === "/give" ? styles.activeLink : ""}
             >
               Give
             </Link>
-
             <Link
               href="/services"
               className={pathname === "/services" ? styles.activeLink : ""}
             >
               Services
             </Link>
-
             <Link
               href="/roots"
               className={pathname === "/roots" ? styles.activeLink : ""}
             >
               Roots
             </Link>
-
             <Link
               href="/contacts"
               className={pathname === "/contacts" ? styles.activeLink : ""}
@@ -129,10 +128,18 @@ const Navbar = () => {
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
           >
             <ul>
-              <Link href="/give" onClick={() => setMenuOpen(false)}>Give</Link>
-              <Link href="/services" onClick={() => setMenuOpen(false)}>Services</Link>
-              <Link href="/roots" onClick={() => setMenuOpen(false)}>Roots</Link>
-              <Link href="/contacts" onClick={() => setMenuOpen(false)}>Contacts</Link>
+              <Link href="/give" onClick={() => setMenuOpen(false)}>
+                Give
+              </Link>
+              <Link href="/services" onClick={() => setMenuOpen(false)}>
+                Services
+              </Link>
+              <Link href="/roots" onClick={() => setMenuOpen(false)}>
+                Roots
+              </Link>
+              <Link href="/contacts" onClick={() => setMenuOpen(false)}>
+                Contacts
+              </Link>
             </ul>
           </motion.div>
         </div>

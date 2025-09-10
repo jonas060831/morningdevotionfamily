@@ -1,0 +1,38 @@
+/* Desktop flex layout */
+.main-layout {
+  display: flex;
+  height: calc(100vh - 80px); /* navbar height */
+  overflow: hidden;
+  background-color: #e0e0e0;
+  color: black;
+}
+
+/* Page content takes remaining space */
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+/* Optional: mobile behavior */
+@media (max-width: 1023px) {
+  .main-layout {
+    flex-direction: column; /* stack on mobile */
+    height: auto;
+  }
+}
+
+
+/* Tablet */
+@media (max-width: 1023px) {
+  /* Tablet styles here */
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  /* Mobile styles here */
+  .main-layout {
+    flex-direction: column; /* stack on mobile */
+    height: auto;
+  }
+}
