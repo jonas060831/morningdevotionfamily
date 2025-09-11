@@ -6,9 +6,10 @@ import Link from "next/link";
 import { useLayout } from "@/app/context/LayoutProvider";
 import styles from "./RightSideNav.module.css";
 import { useEffect, useRef } from "react";
+import { clear } from "console";
 
 const RightSideNav = () => {
-  const { user } = useAuth();
+  const { user, clearUser } = useAuth();
   const pathname = usePathname();
   const { openSidebar, closeSidebar } = useLayout();
   const sidebarRef = useRef<HTMLDivElement>(null);
@@ -60,6 +61,12 @@ const RightSideNav = () => {
             {link.label}
           </Link>
         ))}
+
+        <button
+         onClick={() => clearUser()}
+        >
+          logout
+        </button>
       </nav>
     </aside>
   );

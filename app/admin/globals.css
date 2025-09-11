@@ -1,7 +1,7 @@
 /* Desktop flex layout */
 .main-layout {
   display: flex;
-  height: calc(100vh - 80px); /* navbar height */
+  height: 90vh;
   overflow: hidden;
   background-color: #e0e0e0;
   color: black;

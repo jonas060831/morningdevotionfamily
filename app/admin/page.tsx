@@ -4,6 +4,8 @@ import { useAuth } from "../context/Authcontext";
 import { useRouter } from "next/navigation";
 import LoadingScreen from "@/components/loading/LoadingScreen";
 
+import styles from './page.module.css'
+
 const Dashboard = () => {
   const { user, loading } = useAuth();
   const router = useRouter();
@@ -19,7 +21,7 @@ const Dashboard = () => {
 
   console.log(user)
 
-  return <div style={{ height: '76vh' }}>
+  return <div className={styles.dashboardContainer}>
     Dashboard
   </div>;
 };
