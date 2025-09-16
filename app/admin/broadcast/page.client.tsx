@@ -99,38 +99,38 @@ const Broadcast: FC<BroadcastProps> = ({ streamIOAPIKey: apiKey }) => {
 
   // Switch camera (works on iOS and Android)
   const switchCamera = async () => {
-    if (!call) return;
+  if (!call) return;
 
-    try {
-      // Determine new facing mode
-      const newFacingMode = usingFrontCamera ? "environment" : "user";
+  try {
+    const newFacingMode = usingFrontCamera ? "environment" : "user";
 
-      // Create new video stream with opposite camera
-      const newStream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: newFacingMode },
-        audio: false, // keep existing audio track
-      });
-      const newVideoTrack = newStream.getVideoTracks()[0];
+    // Get new video stream
+    const newStream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: newFacingMode },
+      audio: false, // keep the existing audio track
+    });
+    const newVideoTrack = newStream.getVideoTracks()[0];
 
-      // Stop previous track to free camera
-      const currentTrack = call.localParticipant.videoTracks[0]?.track;
-      if (currentTrack) currentTrack.stop();
+    // Stop the current track
+    const currentTrack = call.localParticipant.videoTracks[0]?.track;
+    if (currentTrack) currentTrack.stop();
 
-      // Replace the track if supported
-      if (call.localParticipant.replaceTrack) {
-        await call.localParticipant.replaceTrack(currentTrack, newVideoTrack);
-      } else {
-        // Fallback: unpublish and publish new track (works on mobile)
-        await call.localParticipant.unpublishTrack(currentTrack);
-        await call.localParticipant.publishVideoTrack(newVideoTrack);
-      }
-
-      setUsingFrontCamera(!usingFrontCamera);
-    } catch (err: any) {
-      console.error("Error switching camera:", err);
-      alert("Camera switching may not be supported on this device. Try reloading the page.");
+    // Replace track (desktop-friendly)
+    if (call.localParticipant.replaceTrack) {
+      await call.localParticipant.replaceTrack(currentTrack, newVideoTrack);
+    } else {
+      // Fallback for mobile (iOS Safari / some Android)
+      await call.localParticipant.unpublishTrack(currentTrack);
+      await call.localParticipant.publishVideoTrack(newVideoTrack);
     }
-  };
+
+    setUsingFrontCamera(!usingFrontCamera);
+  } catch (err) {
+    console.error("Error switching camera:", err);
+    alert("Camera switching may not be supported on this device.");
+  }
+};
+
 
   if (loading || isInitializing) return <LoadingScreen />;
   if (!authUser) return null;
