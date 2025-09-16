@@ -102,25 +102,33 @@ const Broadcast: FC<BroadcastProps> = ({ streamIOAPIKey: apiKey }) => {
     if (!call) return;
 
     try {
-      // Stop current video track
+      // Determine new facing mode
+      const newFacingMode = usingFrontCamera ? "environment" : "user";
+
+      // Create new video stream with opposite camera
+      const newStream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: newFacingMode },
+        audio: false, // keep existing audio track
+      });
+      const newVideoTrack = newStream.getVideoTracks()[0];
+
+      // Stop previous track to free camera
       const currentTrack = call.localParticipant.videoTracks[0]?.track;
       if (currentTrack) currentTrack.stop();
 
-      // Get new stream with opposite camera
-      const constraints = {
-        video: { facingMode: usingFrontCamera ? "environment" : "user" },
-        audio: true,
-      };
-      const newStream = await navigator.mediaDevices.getUserMedia(constraints);
-      const newVideoTrack = newStream.getVideoTracks()[0];
-
-      // Replace track or re-enable video
-      await call.localParticipant.replaceTrack(currentTrack, newVideoTrack);
+      // Replace the track if supported
+      if (call.localParticipant.replaceTrack) {
+        await call.localParticipant.replaceTrack(currentTrack, newVideoTrack);
+      } else {
+        // Fallback: unpublish and publish new track (works on mobile)
+        await call.localParticipant.unpublishTrack(currentTrack);
+        await call.localParticipant.publishVideoTrack(newVideoTrack);
+      }
 
       setUsingFrontCamera(!usingFrontCamera);
-    } catch (err) {
+    } catch (err: any) {
       console.error("Error switching camera:", err);
-      alert("Camera switching may not be supported on this device.");
+      alert("Camera switching may not be supported on this device. Try reloading the page.");
     }
   };
 
