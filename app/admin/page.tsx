@@ -19,8 +19,6 @@ const Dashboard = () => {
   if (loading) return <LoadingScreen />; // ✅ no premature redirect
   if (!user) return null;
 
-  console.log(user)
-
   return <div className={styles.dashboardContainer}>
     Dashboard
   </div>;

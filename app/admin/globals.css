@@ -14,6 +14,15 @@
   padding: 1rem;
 }
 
+
+
+/* Force video to fill parent */
+.stream-video video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover; /* or 'contain' if you want full video visible with black bars */
+}
+
 /* Optional: mobile behavior */
 @media (max-width: 1023px) {
   .main-layout {

@@ -1,27 +1,12 @@
-"use client"
-import { useAuth } from '@/app/context/Authcontext';
-import LoadingScreen from '@/components/loading/LoadingScreen';
-import { useRouter } from 'next/navigation';
-import React, { useEffect } from 'react'
+import React from 'react'
+import Broadcast from './page.client'
 
-const Broadcast = () => {
+const page = () => {
 
-  const { user, loading } = useAuth();
-  const router = useRouter();
+  return <>
 
-  useEffect(() => {
-    if (!loading && !user) {
-      router.push("/admin/login");
-    }
-  }, [loading, user, router]);
-
-  if (loading) return <LoadingScreen />; // ✅ no premature redirect
-  if (!user) return null;
-
-
-  return (
-    <div>Broadcast</div>
-  )
+    <Broadcast streamIOAPIKey={process.env.STREAM_API_KEY!}/>
+  </>
 }
 
-export default Broadcast
+export default page

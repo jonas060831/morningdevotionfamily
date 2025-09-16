@@ -1,0 +1,12 @@
+.participantVideo {
+  width: 100% !important;
+  height: 100% !important;
+  
+}
+
+.participantVideo video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover; /* or 'contain' if you want black bars */
+  
+}

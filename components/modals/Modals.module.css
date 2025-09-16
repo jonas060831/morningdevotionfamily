@@ -45,3 +45,42 @@
     }
   }
   
+
+  .videoModal {
+  background-color: var(--ui-background-color, #000);
+  color: var(--font-color, #fff);
+  width: 100%;
+  height: 100%;
+  border-radius: 0; /* full screen, no rounded corners */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  animation: fadeIn 0.3s ease;
+}
+
+.videoContent {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.videoContent > * {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* good for video or images */
+}
+
+.closeButtonWrapper {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+.closeButtonWrapper:hover {
+  opacity: 0.8;
+}

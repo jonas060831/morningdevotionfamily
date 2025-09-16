@@ -1,11 +1,15 @@
+import Image from 'next/image'
 import React from 'react'
 
 const LoadingScreen = () => {
   return (
     <div
-     style={{ width: '100vw', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: "center" }}
+     style={{ width: '80vw', height: '86vh', display: 'flex', alignItems: 'center', justifyContent: "center" }}
     >
-        Loading...
+      <div style={{ position: 'relative', width: '100px', height: '100px' }}>
+        
+        <Image src="/assets/svgs/icons/loading.svg" alt='loading...' fill />
+      </div>
     </div>
   )
 }

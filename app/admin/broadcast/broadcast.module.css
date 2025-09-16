@@ -1,0 +1,44 @@
+.pageContainer {
+    height: 86vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.streamVideoContainer {
+    width: 80.5%;
+    max-height: 86vh;
+    aspect-ratio: 16 / 9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+
+/* Tablet */
+@media (max-width: 1023px) {
+  /* Tablet styles here */
+  .pageContainer {
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 2rem;
+  }
+
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  
+  .pageContainer {
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 2rem;
+  }
+  /* Mobile styles here */
+  .streamVideoContainer {
+    width: 100vw;
+  }
+}
