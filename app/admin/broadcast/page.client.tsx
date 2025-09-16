@@ -129,6 +129,38 @@ const Broadcast:FC<BroadcastProps> = ({ streamIOAPIKey:apiKey }) => {
     };
   }, []); // Empty dependency array - only run on unmount
 
+
+
+  // Add state for camera selection
+const [usingFrontCamera, setUsingFrontCamera] = useState(true);
+
+// Function to switch camera
+const switchCamera = async () => {
+  if (!call) return;
+
+  try {
+    const constraints = {
+      video: { facingMode: usingFrontCamera ? "environment" : "user" },
+      audio: true,
+    };
+    
+    const newStream = await navigator.mediaDevices.getUserMedia(constraints);
+    const newVideoTrack = newStream.getVideoTracks()[0];
+
+    // Replace the existing video track in the call
+    await call.localParticipant.replaceTrack(
+      call.localParticipant.videoTracks[0].track,
+      newVideoTrack
+    );
+
+    setUsingFrontCamera(!usingFrontCamera);
+  } catch (err) {
+    console.error("Error switching camera:", err);
+  }
+};
+
+
+
   if (loading || isInitializing) return <LoadingScreen />;
   if (!authUser) return null;
 
@@ -163,6 +195,10 @@ const Broadcast:FC<BroadcastProps> = ({ streamIOAPIKey:apiKey }) => {
             <MyLiveStreamUI />
           </StreamCall>
         </StreamVideo>
+
+        <button onClick={switchCamera} className={styles.switchCameraButton}>
+          Switch Camera
+        </button>
       </div>
     </div>
   );
