@@ -20,6 +20,7 @@
 
 .switchCameraButton {
   position: absolute;
+  visibility: hidden;
   bottom: 20px;
   right: 20px;
   background-color: rgba(255, 255, 255, 0.85);
@@ -80,5 +81,8 @@
   /* Mobile styles here */
   .streamVideoContainer {
     width: 100vw;
+  }
+  .switchCameraButton{
+    visibility: visible;
   }
 }
