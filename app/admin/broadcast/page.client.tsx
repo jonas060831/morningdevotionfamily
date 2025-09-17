@@ -8,11 +8,13 @@ import {
   StreamVideoClient,
   StreamVideo,
   StreamCall,
+  useCallStateHooks,
+  useDeviceList,
 } from "@stream-io/video-react-sdk";
 import "@stream-io/video-react-sdk/dist/css/styles.css";
 import { MyLiveStreamUI } from "@/components/livestream/MyLiveStreamUI";
 import RequestPermissionButton from "@/components/livestream/RequestPermissionButton";
-import styles from './broadcast.module.css';
+import styles from "./broadcast.module.css";
 import { createStreamToken } from "@/app/(server)/streamio/create-token";
 
 type BroadcastProps = {
@@ -25,9 +27,10 @@ const Broadcast: FC<BroadcastProps> = ({ streamIOAPIKey: apiKey }) => {
   const [permissionsGranted, setPermissionsGranted] = useState(false);
   const [client, setClient] = useState<StreamVideoClient | null>(null);
   const [call, setCall] = useState<any>(null);
-  const [initializationError, setInitializationError] = useState<string | null>(null);
+  const [initializationError, setInitializationError] = useState<string | null>(
+    null
+  );
   const [isInitializing, setIsInitializing] = useState(false);
-  const [usingFrontCamera, setUsingFrontCamera] = useState(true);
 
   // Redirect if not authenticated
   useEffect(() => {
@@ -50,7 +53,10 @@ const Broadcast: FC<BroadcastProps> = ({ streamIOAPIKey: apiKey }) => {
         setPermissionsGranted(true);
 
         // Get Stream token
-        const { success, data, error } = await createStreamToken(authUser._id, "admin");
+        const { success, data, error } = await createStreamToken(
+          authUser._id,
+          "admin"
+        );
         if (!success) throw new Error(error || "Failed to create stream token");
 
         const token = data;
@@ -67,16 +73,21 @@ const Broadcast: FC<BroadcastProps> = ({ streamIOAPIKey: apiKey }) => {
         await callInstance.join();
         setClient(clientInstance);
         setCall(callInstance);
-
       } catch (err: any) {
         console.error("Error initializing livestream:", err);
         if (err.message?.includes("Permission denied")) {
           setPermissionsGranted(false);
-          setInitializationError("Camera and microphone access required for livestreaming");
+          setInitializationError(
+            "Camera and microphone access required for livestreaming"
+          );
         } else if (err.message?.includes("role")) {
-          setInitializationError("Insufficient permissions to create livestream. Contact administrator.");
+          setInitializationError(
+            "Insufficient permissions to create livestream. Contact administrator."
+          );
         } else {
-          setInitializationError(`Failed to initialize livestream: ${err.message}`);
+          setInitializationError(
+            `Failed to initialize livestream: ${err.message}`
+          );
         }
       } finally {
         setIsInitializing(false);
@@ -90,50 +101,54 @@ const Broadcast: FC<BroadcastProps> = ({ streamIOAPIKey: apiKey }) => {
   useEffect(() => {
     return () => {
       const cleanup = async () => {
-        try { if (call) await call.leave(); } catch (err) { console.error(err); }
-        try { if (client) await client.disconnectUser(); } catch (err) { console.error(err); }
+        try {
+          if (call) await call.leave();
+        } catch (err) {
+          console.error(err);
+        }
+        try {
+          if (client) await client.disconnectUser();
+        } catch (err) {
+          console.error(err);
+        }
       };
       cleanup();
     };
-  }, []);
+  }, [call, client]);
 
-  // Switch camera (works on iOS and Android)
+  // ✅ Camera switching with SDK
+  const { useCameraState } = useCallStateHooks();
+  const { camera, selectedDevice, devices } = useCameraState();
+  const { deviceList } = useDeviceList(devices, selectedDevice);
+
   const switchCamera = async () => {
-  if (!call || !call.localParticipant) return;
+    if (!camera || !devices.length) return;
 
-  try {
-    const newFacingMode = usingFrontCamera ? "environment" : "user";
+    // Find the current device
+    const currentDevice = devices.find((d) => d.deviceId === selectedDevice);
 
-    // Get the current video track safely
-    const videoTracks = call.localParticipant.videoTracks;
-    const oldTrack = videoTracks && videoTracks.length > 0 ? videoTracks[0].track : null;
-    if (oldTrack) oldTrack.stop();
+    // Detect if it's front-facing
+    const isFront =
+      currentDevice?.label?.toLowerCase().includes("front") ?? true;
 
-    // Create new video track
-    const newStream = await navigator.mediaDevices.getUserMedia({
-      video: { facingMode: newFacingMode },
-      audio: false, // keep existing audio
-    });
-    const newVideoTrack = newStream.getVideoTracks()[0];
+    // Pick the opposite camera
+    const nextDevice = devices.find((d) =>
+      isFront
+        ? d.label.toLowerCase().includes("back") ||
+          d.label.toLowerCase().includes("rear")
+        : d.label.toLowerCase().includes("front")
+    );
 
-    // Replace or re-publish track
-    if (oldTrack && call.localParticipant.replaceTrack) {
-      await call.localParticipant.replaceTrack(oldTrack, newVideoTrack);
+    if (nextDevice) {
+      try {
+        await camera.select(nextDevice.deviceId);
+      } catch (err) {
+        console.error("Failed to switch camera:", err);
+      }
     } else {
-      if (oldTrack) await call.localParticipant.unpublishTrack(oldTrack);
-      await call.localParticipant.publishVideoTrack(newVideoTrack);
+      console.warn("No alternative camera found");
     }
-
-    setUsingFrontCamera(!usingFrontCamera);
-  } catch (err) {
-    console.error("Error switching camera:", err);
-    alert("Switching camera may not be supported on this device/browser.");
-  }
-};
-
-
-
-
+  };
 
   if (loading || isInitializing) return <LoadingScreen />;
   if (!authUser) return null;
@@ -144,7 +159,10 @@ const Broadcast: FC<BroadcastProps> = ({ streamIOAPIKey: apiKey }) => {
         <div className={styles.errorContainer}>
           <h2>Error</h2>
           <p>{initializationError}</p>
-          <button onClick={() => window.location.reload()} className={styles.retryButton}>
+          <button
+            onClick={() => window.location.reload()}
+            className={styles.retryButton}
+          >
             Retry
           </button>
         </div>
@@ -153,7 +171,9 @@ const Broadcast: FC<BroadcastProps> = ({ streamIOAPIKey: apiKey }) => {
   }
 
   if (!permissionsGranted) {
-    return <RequestPermissionButton onGranted={() => window.location.reload()} />;
+    return (
+      <RequestPermissionButton onGranted={() => window.location.reload()} />
+    );
   }
 
   if (!client || !call) return <LoadingScreen />;
