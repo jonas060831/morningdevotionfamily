@@ -2,6 +2,7 @@ import { useCall, useCallStateHooks, ParticipantView } from "@stream-io/video-re
 
 import styles from './MyLiveStreamUI.module.css'
 import Image from "next/image";
+import SwitchCameraButton from "./SwitchCameraButton";
 
 export const MyLiveStreamUI = () => {
   const call = useCall();
@@ -56,11 +57,14 @@ export const MyLiveStreamUI = () => {
       {/* Video fills container */}
       <div style={{ flex: 1, width: "100%", height: "100%" }}>
         {localParticipant && (
-          <ParticipantView
-            participant={localParticipant}
-            ParticipantViewUI={null}
-            className={styles.participantVideo}
-          />
+          <>
+            <ParticipantView
+             participant={localParticipant}
+             ParticipantViewUI={null}
+             className={styles.participantVideo}
+            />
+            <SwitchCameraButton />
+          </>
         )}
       </div>
     </div>

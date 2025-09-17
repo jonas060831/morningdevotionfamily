@@ -2,9 +2,12 @@
 import React from "react";
 import { useCallStateHooks } from "@stream-io/video-react-sdk";
 import styles from "./SwitchCameraButton.module.css"; // optional styling
+import { useSystemMessage } from "../modals/notification/systemMessage/SystemMessageManager";
+import Image from "next/image";
 
 const SwitchCameraButton = () => {
   const { useCameraState } = useCallStateHooks();
+  const { showMessage } = useSystemMessage()
   const { camera, selectedDevice, devices } = useCameraState();
 
   const switchCamera = async () => {
@@ -29,13 +32,17 @@ const SwitchCameraButton = () => {
       }
     } else {
       console.warn("No alternative camera found");
+      showMessage("No alternative camera found", "info")
     }
   };
 
   return (
-    <button onClick={switchCamera} className={styles.switchCameraButton}>
-      Switch Camera
-    </button>
+    <div
+     onClick={switchCamera}
+     className={styles.switchCameraButton}
+    >
+      <Image src="/assets/svgs/icons/switchcamera.svg" alt="switch camera icon" fill />
+    </div>
   );
 };
 

@@ -14,7 +14,6 @@ import { MyLiveStreamUI } from "@/components/livestream/MyLiveStreamUI";
 import RequestPermissionButton from "@/components/livestream/RequestPermissionButton";
 import styles from "./broadcast.module.css";
 import { createStreamToken } from "@/app/(server)/streamio/create-token";
-import SwitchCameraButton from "@/components/livestream/SwitchCameraButton";
 
 type BroadcastProps = {
   streamIOAPIKey: string;
@@ -146,7 +145,7 @@ const Broadcast: FC<BroadcastProps> = ({ streamIOAPIKey: apiKey }) => {
         <StreamVideo client={client}>
           <StreamCall call={call}>
             <MyLiveStreamUI />
-            <SwitchCameraButton />
+            
           </StreamCall>
         </StreamVideo>
       </div>
