@@ -137,7 +137,8 @@ const Broadcast: FC<BroadcastProps> = ({ streamIOAPIKey: apiKey }) => {
     );
   }
 
-  if (!client || !call) return <LoadingScreen />;
+  if (!client || !call) return <LoadingScreen />
+   
 
   return (
     <div className={styles.pageContainer}>

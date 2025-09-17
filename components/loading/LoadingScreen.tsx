@@ -4,10 +4,9 @@ import React from 'react'
 const LoadingScreen = () => {
   return (
     <div
-     style={{ width: '80vw', height: '86vh', display: 'flex', alignItems: 'center', justifyContent: "center" }}
+     style={{ width: '90vw', height: '86vh', display: 'flex', alignItems: 'center', justifyContent: "center" }}
     >
       <div style={{ position: 'relative', width: '100px', height: '100px' }}>
-        
         <Image src="/assets/svgs/icons/loading.svg" alt='loading...' fill />
       </div>
     </div>
