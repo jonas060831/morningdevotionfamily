@@ -39,17 +39,16 @@ export const MyLiveStreamUI = () => {
         <span>Viewers: {totalParticipants - 1}</span>
         {isCallLive ? (
           <button style={{ color: "red", display: 'flex', alignItems: 'center', gap: '5px' }} onClick={() => call?.stopLive()}>
-            <div style={{ position: 'relative', width: '25px', height: '25px' }}>
+            <div style={{ position: 'relative', width: '25px', height: '25px', filter: "drop-shadow(0px 0px 9px rgba(0, 0, 0, 1))"}}>
               <Image src="/assets/svgs/icons/stop.svg" alt="play button" fill/>
              </div>
-             Stop Stream
+
           </button>
         ) : (
           <button style={{ color: "#04ff1e", display: 'flex', alignItems: 'center', gap: '5px' }} onClick={() => call?.goLive()}>
-             <div style={{ position: 'relative', width: '25px', height: '25px' }}>
+             <div style={{ position: 'relative', width: '25px', height: '25px', filter: "drop-shadow(0px 0px 9px rgba(0, 0, 0, 1))" }}>
               <Image src="/assets/svgs/icons/play.svg" alt="play button" fill/>
              </div>
-             Start Stream
           </button>
         )}
       </div>
