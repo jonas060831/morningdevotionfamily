@@ -8,14 +8,13 @@ import {
   StreamVideoClient,
   StreamVideo,
   StreamCall,
-  useCallStateHooks,
-  useDeviceList,
 } from "@stream-io/video-react-sdk";
 import "@stream-io/video-react-sdk/dist/css/styles.css";
 import { MyLiveStreamUI } from "@/components/livestream/MyLiveStreamUI";
 import RequestPermissionButton from "@/components/livestream/RequestPermissionButton";
 import styles from "./broadcast.module.css";
 import { createStreamToken } from "@/app/(server)/streamio/create-token";
+import SwitchCameraButton from "@/components/livestream/SwitchCameraButton";
 
 type BroadcastProps = {
   streamIOAPIKey: string;
@@ -48,11 +47,9 @@ const Broadcast: FC<BroadcastProps> = ({ streamIOAPIKey: apiKey }) => {
       setInitializationError(null);
 
       try {
-        // Request permissions
         await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
         setPermissionsGranted(true);
 
-        // Get Stream token
         const { success, data, error } = await createStreamToken(
           authUser._id,
           "admin"
@@ -66,7 +63,6 @@ const Broadcast: FC<BroadcastProps> = ({ streamIOAPIKey: apiKey }) => {
           image: "/assets/images/logos/dtc.png",
         };
 
-        // Initialize Stream client
         const clientInstance = new StreamVideoClient({ apiKey, user, token });
         const callInstance = clientInstance.call("livestream", "sunday-mass");
 
@@ -95,9 +91,9 @@ const Broadcast: FC<BroadcastProps> = ({ streamIOAPIKey: apiKey }) => {
     };
 
     initializeStream();
-  }, [loading, authUser?._id]);
+  }, [loading, authUser?._id, client, isInitializing]);
 
-  // Cleanup on unmount
+  // Cleanup
   useEffect(() => {
     return () => {
       const cleanup = async () => {
@@ -115,40 +111,6 @@ const Broadcast: FC<BroadcastProps> = ({ streamIOAPIKey: apiKey }) => {
       cleanup();
     };
   }, [call, client]);
-
-  // ✅ Camera switching with SDK
-  const { useCameraState } = useCallStateHooks();
-  const { camera, selectedDevice, devices } = useCameraState();
-  const { deviceList } = useDeviceList(devices, selectedDevice);
-
-  const switchCamera = async () => {
-    if (!camera || !devices.length) return;
-
-    // Find the current device
-    const currentDevice = devices.find((d) => d.deviceId === selectedDevice);
-
-    // Detect if it's front-facing
-    const isFront =
-      currentDevice?.label?.toLowerCase().includes("front") ?? true;
-
-    // Pick the opposite camera
-    const nextDevice = devices.find((d) =>
-      isFront
-        ? d.label.toLowerCase().includes("back") ||
-          d.label.toLowerCase().includes("rear")
-        : d.label.toLowerCase().includes("front")
-    );
-
-    if (nextDevice) {
-      try {
-        await camera.select(nextDevice.deviceId);
-      } catch (err) {
-        console.error("Failed to switch camera:", err);
-      }
-    } else {
-      console.warn("No alternative camera found");
-    }
-  };
 
   if (loading || isInitializing) return <LoadingScreen />;
   if (!authUser) return null;
@@ -184,12 +146,9 @@ const Broadcast: FC<BroadcastProps> = ({ streamIOAPIKey: apiKey }) => {
         <StreamVideo client={client}>
           <StreamCall call={call}>
             <MyLiveStreamUI />
+            <SwitchCameraButton />
           </StreamCall>
         </StreamVideo>
-
-        <button onClick={switchCamera} className={styles.switchCameraButton}>
-          Switch Camera
-        </button>
       </div>
     </div>
   );
