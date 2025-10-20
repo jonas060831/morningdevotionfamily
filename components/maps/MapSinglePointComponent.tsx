@@ -218,7 +218,23 @@ const MapSinglePointComponent: FC<MapSinglePointComponentProps> = ({
               pointerEvents: "none", // makes sure map interactions still work
             }}
           />
-        </Marker>`
+        </Marker>
+
+        <Marker latitude={34.090733} longitude={-117.940090} anchor="center">
+          <img
+            src="/assets/gifs/MdfPin.gif"
+            alt="Map Pin"
+            style={{
+              width: "400px",
+              height: "300px",
+              transform: "translate(1%, -35%)", // centers pin properly on map point
+              cursor: "pointer",
+              userSelect: "none",
+              pointerEvents: "none", // makes sure map interactions still work
+            }}
+          />
+        </Marker>
+
 
 
         {showPopup && (

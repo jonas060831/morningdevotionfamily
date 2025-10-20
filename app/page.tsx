@@ -55,7 +55,7 @@ import ServicesPreview from "@/components/servicespreview/ServicesPreview";
         <MapSinglePointComponent
          latitude={33.82496}
          longitude={-118.26407}
-         zoom={15}
+         zoom={12}
          animationDuration={60}
          controls={<UpDownControls/>}
          mapboxToken={mapboxToken!}

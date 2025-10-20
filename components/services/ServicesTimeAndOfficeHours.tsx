@@ -27,7 +27,10 @@ const ServicesTimeAndOfficeHours = () => {
                 <tbody>
                     <tr>
                     <td >Sunday</td>
-                    <td >9:00 AM & 11:00 AM</td>
+                    <td >
+                        10:00 AM - 12:00 NN <span style={{ color: 'red' }}>CARSON  </span><br />
+                        3:00 PM - 5:00 PM <span style={{ color: 'red' }}>WEST COVINA </span>
+                    </td>
                     <td >Closed</td>
                     </tr>
 
@@ -45,7 +48,7 @@ const ServicesTimeAndOfficeHours = () => {
 
                     <tr>
                     <td >Wednesday</td>
-                    <td >7:00 PM Bible Study</td>
+                    <td >&nbsp;</td>
                     <td >9:00 AM - 5:00 PM</td>
                     </tr>
 
