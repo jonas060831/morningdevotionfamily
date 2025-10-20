@@ -11,10 +11,14 @@
   },
   "dependencies": {
     "@react-email/components": "0.5.1",
+    "@stream-io/node-sdk": "^0.6.6",
+    "@stream-io/video-react-sdk": "^1.21.0",
     "@stripe/react-stripe-js": "^4.0.0",
     "@stripe/stripe-js": "^7.9.0",
+    "bcryptjs": "^3.0.2",
     "framer-motion": "^12.23.12",
     "googleapis": "^159.0.0",
+    "jsonwebtoken": "^9.0.2",
     "mapbox-gl": "^3.14.0",
     "mongoose": "^8.18.0",
     "motion": "^12.23.12",
@@ -28,6 +32,8 @@
   "devDependencies": {
     "@react-email/preview-server": "^4.2.0",
     "@svgr/webpack": "^8.1.0",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/mapbox-gl": "^3.4.1",
     "@types/node": "^20",
     "@types/nodemailer": "^6.4.17",

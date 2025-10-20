@@ -11,6 +11,8 @@ import ServicesPreview from "@/components/servicespreview/ServicesPreview";
 
   const mapboxToken = process.env.MAPBOX_TOKEN
   const mapboxStyle = process.env.MAPBOX_STYLE
+  
+  const streamIOAPIKey = process.env.STREAM_API_KEY
 
   return (
     <div className="snapContainer">
@@ -19,7 +21,9 @@ import ServicesPreview from "@/components/servicespreview/ServicesPreview";
        className="snapItem"
        id='mastHead'
       >
-        <Masthead />
+        <Masthead
+         streamIOAPIKey={streamIOAPIKey!}
+        />
       </section>
 
       <section
@@ -51,7 +55,7 @@ import ServicesPreview from "@/components/servicespreview/ServicesPreview";
         <MapSinglePointComponent
          latitude={33.82496}
          longitude={-118.26407}
-         zoom={15}
+         zoom={12}
          animationDuration={60}
          controls={<UpDownControls/>}
          mapboxToken={mapboxToken!}

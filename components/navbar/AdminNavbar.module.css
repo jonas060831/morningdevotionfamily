@@ -1,0 +1,35 @@
+.navbar {
+    background-color: #262626;
+    height: 80px;
+    display: flex;
+    color: white;
+    align-items: center;
+    padding: 0rem 1rem;
+    justify-content: space-between;
+}
+
+.leftSideMenu {
+    visibility: hidden;
+}
+
+
+.leftSideMenu:hover, .userRightMenu:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+
+
+/* Tablet */
+@media (max-width: 1023px) {
+  /* Tablet styles here */
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  /* Mobile styles here */
+  .leftSideMenu {
+    visibility: visible;
+  }
+
+}

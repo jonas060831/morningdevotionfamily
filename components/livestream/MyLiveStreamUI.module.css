@@ -1,0 +1,29 @@
+.participantVideo {
+  width: 100% !important;
+  height: 100% !important;
+  
+}
+
+.participantVideo video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  
+}
+
+
+
+@media (max-width: 768px) {
+  .participantVideo {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden;
+  }
+
+  .participantVideo video {
+    object-fit: cover !important; /* fill entire height */
+  }
+}

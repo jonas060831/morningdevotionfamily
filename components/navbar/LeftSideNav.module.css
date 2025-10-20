@@ -1,0 +1,52 @@
+/* Desktop: default */
+.container {
+  width: 300px;
+  height: 100vh; /* full height */
+  background-color: white;
+  position: relative;
+  top: 0;
+  left: 0;
+  transform: translateX(0); /* always visible */
+  transition: transform 0.3s ease-in-out;
+  z-index: 50;
+  padding: 1rem;
+  overflow-y: auto;
+  border-right: 1px solid #ddd;
+}
+
+/* Navigation links */
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.link {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.link.active {
+  color: #0070f3;
+}
+
+/* Tablet & Mobile: overrides */
+@media (max-width: 1023px) {
+  .container {
+    width: 60%;
+    max-height: calc(100vh - 80px); /* space below AdminNavbar */
+    position: fixed;
+    left: 0;
+    transform: translateX(-100%); /* hidden by default */
+    transition: transform 0.3s ease-in-out;
+    padding: 1rem;
+    border-right: 1px solid #ddd;
+    margin-top: 80px;
+  }
+
+  /* Slide in when open */
+  .open {
+    transform: translateX(0);
+  }
+}

@@ -69,7 +69,14 @@ const Footer = () => {
                     ))
                 }
             </div>
+
+            <div className={styles.serviceTimes} style={{ textAlign: 'center', fontFamily: "var(--font-pollerOne)" }}>
+                Carson City 10:00AM - 12:00 NN <br />
+                West Covina 3:00PM - 5:00PM<br />
+                <br />
+            </div>
         </div>
+
     </div>
   )
 }
