@@ -1,5 +1,6 @@
 import CallToAction from '@/components/calltoaction/CallToAction'
 import Footer from '@/components/footer/Footer'
+import MinistriesList from '@/components/services/MinistriesList'
 import ServicesList from '@/components/services/ServicesList'
 import ServicesTimeAndOfficeHours from '@/components/services/ServicesTimeAndOfficeHours'
 import React from 'react'
@@ -14,6 +15,13 @@ const Services = () => {
          id="services"
         >
           <ServicesList />
+        </section>
+
+        <section
+         className="snapItem"
+         id="services"
+        >
+          <MinistriesList />
         </section>
 
         <section

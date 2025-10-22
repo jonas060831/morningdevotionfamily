@@ -1,10 +1,21 @@
 "use client";
 import React, { FC, useRef, useEffect, useState, ReactNode } from "react";
-import { Map, Marker, useMap } from "react-map-gl/mapbox";
+import { Map, Marker, Popup, useMap } from "react-map-gl/mapbox";
 import { useInView } from "framer-motion";
 import "mapbox-gl/dist/mapbox-gl.css";
+import styles from "./MapSinglePointComponent.module.css";
+import Image from "next/image";
 
-import styles from './MapSinglePointComponent.module.css'
+
+const openInMaps = (lat: number, lng: number) => {
+  const isApple = /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent);
+  const url = isApple
+    ? `https://maps.apple.com/?daddr=${lat},${lng}`
+    : `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+  window.open(url, "_blank");
+};
+
+
 
 type MapSinglePointComponentProps = {
   latitude: number;
@@ -15,7 +26,7 @@ type MapSinglePointComponentProps = {
   popupText?: string;
   autoAnimate?: boolean;
   animationDuration?: number;
-  viewAngle?: number; // 0 = top-down, 60 = max side angle
+  viewAngle?: number;
   controls?: ReactNode;
   mapboxToken: string;
   mapboxStyle: string;
@@ -29,7 +40,15 @@ const AnimatedMapContent: FC<{
   animationDuration: number;
   viewAngle: number;
   isInView: boolean;
-}> = ({ latitude, longitude, zoom, autoAnimate, animationDuration, viewAngle, isInView }) => {
+}> = ({
+  latitude,
+  longitude,
+  zoom,
+  autoAnimate,
+  animationDuration,
+  viewAngle,
+  isInView,
+}) => {
   const { current: map } = useMap();
   const animationRef = useRef<number | null>(null);
 
@@ -40,13 +59,12 @@ const AnimatedMapContent: FC<{
 
     const startRotation = () => {
       let startTime: number | null = null;
-      const rotationSpeed = 360 / (animationDuration * 1000); // degrees/ms
+      const rotationSpeed = 360 / (animationDuration * 1000);
       let currentBearing = 0;
 
       const animate = (timestamp: number) => {
         if (!startTime) startTime = timestamp;
         const elapsed = timestamp - startTime;
-
         currentBearing = (elapsed * rotationSpeed) % 360;
 
         map.rotateTo(currentBearing, {
@@ -61,21 +79,8 @@ const AnimatedMapContent: FC<{
       animationRef.current = requestAnimationFrame(animate);
     };
 
-    const startAnimation = () => {
-      map.easeTo({
-        center: [longitude, latitude],
-        zoom: zoom + 3,
-        pitch: viewAngle,
-        bearing: 0,
-        duration: 2000,
-        easing: (t: number) => t * (2 - t),
-      });
-
-      timeout = setTimeout(startRotation, 2000);
-    };
-
-    // Start once visible
-    startAnimation();
+    // Delay rotation slightly so fitBounds/zoom finishes first
+    timeout = setTimeout(startRotation, 2500);
 
     return () => {
       clearTimeout(timeout);
@@ -89,7 +94,7 @@ const AnimatedMapContent: FC<{
 const MapSinglePointComponent: FC<MapSinglePointComponentProps> = ({
   latitude,
   longitude,
-  zoom = 14,
+  zoom = 18,
   pinColor = "#494de0",
   showPopup = false,
   popupText = "Location",
@@ -98,16 +103,17 @@ const MapSinglePointComponent: FC<MapSinglePointComponentProps> = ({
   viewAngle = 45,
   controls,
   mapboxToken,
-  mapboxStyle
+  mapboxStyle,
 }) => {
   const [showControls, setShowControls] = useState(false);
   const [isManualAnimating, setIsManualAnimating] = useState(false);
   const mapRef = useRef<any>(null);
   const manualAnimationRef = useRef<NodeJS.Timeout | null>(null);
 
-  // 👇 observe container visibility
   const containerRef = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+
+  const [activePopup, setActivePopup] = useState<null | "pin1" | "pin2">(null);
 
   const handleManualAnimation = () => {
     const map = mapRef.current?.getMap();
@@ -130,10 +136,9 @@ const MapSinglePointComponent: FC<MapSinglePointComponentProps> = ({
     }
 
     setIsManualAnimating(true);
-
     map.easeTo({
       center: [longitude, latitude],
-      zoom: zoom + 4,
+      zoom: zoom + 5,
       pitch: viewAngle,
       bearing: 0,
       duration: 300,
@@ -154,6 +159,8 @@ const MapSinglePointComponent: FC<MapSinglePointComponentProps> = ({
     };
   }, []);
 
+  const point2 = [-117.94009, 34.090733];
+
   return (
     <div ref={containerRef} style={{ position: "relative", width: "100%", height: "100%" }}>
       <Map
@@ -162,9 +169,29 @@ const MapSinglePointComponent: FC<MapSinglePointComponentProps> = ({
         style={{ width: "100%", height: "100%" }}
         mapStyle={mapboxStyle || "mapbox://styles/mapbox/streets-v12"}
         mapboxAccessToken={mapboxToken}
+        onLoad={() => {
+          const map = mapRef.current?.getMap();
+          if (!map) return;
+
+          const point1: [number, number] = [longitude, latitude];
+          const point2: [number, number] = [-117.94009, 34.090733];
+
+          const bounds = [
+            [Math.min(point1[0], point2[0]), Math.min(point1[1], point2[1])],
+            [Math.max(point1[0], point2[0]), Math.max(point1[1], point2[1])],
+          ];
+
+          // 👇 Adjust padding based on device width
+          const isMobile = window.innerWidth < 768;
+          map.fitBounds(bounds, {
+            padding: isMobile ? 60 : 200, // smaller padding for phones
+            duration: 1500,
+          });
+        }}
         onMouseEnter={() => setShowControls(true)}
         onMouseLeave={() => setShowControls(false)}
       >
+        {/* Animation */}
         <AnimatedMapContent
           latitude={latitude}
           longitude={longitude}
@@ -175,68 +202,94 @@ const MapSinglePointComponent: FC<MapSinglePointComponentProps> = ({
           isInView={isInView}
         />
 
-        {/* <Marker latitude={latitude} longitude={longitude} anchor="center">
-          <div
-            style={{
-              width: "30px",
-              height: "30px",
-              borderRadius: "50% 50% 50% 0",
-              backgroundColor: pinColor,
-              border: "3px solid white",
-              boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
-              transform: "rotate(-45deg)",
-              cursor: "pointer",
-              position: "relative",
-              animation: "pulse 2s infinite",
-            }}
-          >
-            <div
-              style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%) rotate(45deg)",
-                width: "8px",
-                height: "8px",
-                backgroundColor: "white",
-                borderRadius: "50%",
-              }}
-            />
-          </div>
-        </Marker> */}
-
+        {/* Pin 1 */}
         <Marker latitude={latitude} longitude={longitude} anchor="center">
           <img
             src="/assets/gifs/MdfPin.gif"
-            alt="Map Pin"
+            alt="Pin 1"
+            onClick={() => setActivePopup(activePopup === "pin1" ? null : "pin1")}
             style={{
-              width: "400px",
-              height: "300px",
-              transform: "translate(1%, -35%)", // centers pin properly on map point
+              width: "200px",
+              height: "200px",
               cursor: "pointer",
-              userSelect: "none",
-              pointerEvents: "none", // makes sure map interactions still work
+              pointerEvents: "auto", // allow tapping
             }}
           />
+          {activePopup === "pin1" && (
+            <Popup
+              latitude={latitude}
+              longitude={longitude}
+              closeOnClick={false}
+              closeButton={false}
+              onClose={() => setActivePopup(null)}
+              offset={[0, -50]} // move popup above the pin
+            >
+              <div style={{ fontSize: "13px", fontWeight: "500", padding: '1rem', color: 'black' }}>
+                 22219 Avalon Blvd.<br />
+                 Carson CA. <br />
+                 {/* <button
+                  onClick={() => openInMaps(latitude, longitude)}
+                  style={{
+                    marginTop: "8px",
+                    background: "#007AFF",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "6px",
+                    padding: "6px 12px",
+                    cursor: "pointer",
+                    fontSize: "13px",
+                  }}
+                >
+                  Drive
+                </button> */}
+
+                <div
+                 onClick={() => openInMaps(33.82496,-118.26407)}
+                 style={{ width: '2rem', height: '2rem', position: 'relative', cursor: 'pointer', marginTop: '1rem' }}
+                >
+                  <Image src="./assets/svgs/icons/route.svg" alt="" fill/>
+                </div>
+
+              </div>
+            </Popup>
+          )}
         </Marker>
 
-        <Marker latitude={34.090733} longitude={-117.940090} anchor="center">
+        {/* Pin 2 */}
+        <Marker latitude={point2[1]} longitude={point2[0]} anchor="center">
           <img
             src="/assets/gifs/MdfPin.gif"
-            alt="Map Pin"
+            alt="Pin 2"
+            onClick={() => setActivePopup(activePopup === "pin2" ? null : "pin2")}
             style={{
-              width: "400px",
-              height: "300px",
-              transform: "translate(1%, -35%)", // centers pin properly on map point
+              width: "200px",
+              height: "200px",
               cursor: "pointer",
-              userSelect: "none",
-              pointerEvents: "none", // makes sure map interactions still work
+              pointerEvents: "auto", // allow tapping
             }}
           />
+          {activePopup === "pin2" && (
+            <Popup
+              latitude={point2[1]}
+              longitude={point2[0]}
+              closeOnClick={false}
+              onClose={() => setActivePopup(null)}
+              closeButton={false}
+              offset={[0, -50]}
+            >
+              <div style={{ fontSize: "13px", fontWeight: "500", padding: '1rem', color: 'black' }}>
+                1773 W San Bernardino Rd. <br />
+                W. Covina CA. <br />
+                <div
+                 onClick={() => openInMaps(point2[1],point2[0])}
+                 style={{ width: '2rem', height: '2rem', position: 'relative', cursor: 'pointer', marginTop: '1rem' }}
+                >
+                  <Image src="./assets/svgs/icons/route.svg" alt="" fill/>
+                </div>
+              </div>
+            </Popup>
+          )}
         </Marker>
-
-
-
         {showPopup && (
           <div
             style={{
@@ -256,15 +309,11 @@ const MapSinglePointComponent: FC<MapSinglePointComponentProps> = ({
           </div>
         )}
 
-
         {controls && (
-          <div
-           className={styles.controlsContainer}
-          >
-              {controls}
+          <div className={styles.controlsContainer}>
+            {controls}
           </div>
         )}
-
       </Map>
 
       {showControls && (
@@ -274,7 +323,9 @@ const MapSinglePointComponent: FC<MapSinglePointComponentProps> = ({
             position: "absolute",
             top: "10px",
             right: "10px",
-            background: isManualAnimating ? "rgba(255,0,0,0.8)" : "rgba(0,0,0,0.8)",
+            background: isManualAnimating
+              ? "rgba(255,0,0,0.8)"
+              : "rgba(0,0,0,0.8)",
             color: "white",
             border: "none",
             borderRadius: "4px",
@@ -288,20 +339,6 @@ const MapSinglePointComponent: FC<MapSinglePointComponentProps> = ({
           {isManualAnimating ? "⏹️ Stop" : "🎯 Animate"}
         </button>
       )}
-
-      <style jsx>{`
-        @keyframes pulse {
-          0% {
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 0 0 ${pinColor}40;
-          }
-          70% {
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 0 10px rgba(255, 0, 0, 0);
-          }
-          100% {
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 0 0 rgba(255, 0, 0, 0);
-          }
-        }
-      `}</style>
     </div>
   );
 };

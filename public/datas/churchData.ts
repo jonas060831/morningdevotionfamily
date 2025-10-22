@@ -1,8 +1,13 @@
 const churchData = [
     {
         icon: "",
-        header: "Address",
-        details: "22219 Avalon Blvd, Carson, CA 90745"
+        header: "[EAST BRANCH]",
+        details: "22219 Avalon Blvd,Carson, CA. 90745"
+    },
+    {
+        icon: "",
+        header: "[WEST BRANCH]",
+        details: "1773 W Sn Bernardino Rd, W. Covina, CA. 91730"
     },
     {
         icon: "",
