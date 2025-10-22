@@ -5,8 +5,11 @@ import TitleAndDescription from '../titleAndDescription/TitleAndDescription'
 
 import styles from "./CallToAction.module.css"
 import OutlineButton from '../buttons/OutlineButton'
+import { useRouter } from 'next/navigation'
 
 const CallToAction = () => {
+
+  const router = useRouter()
   return (
     <ContainerWithBorder>
 
@@ -19,7 +22,7 @@ const CallToAction = () => {
           />
 
           <OutlineButton
-          onClick={() => {}}
+          onClick={() => router.push('/contacts')}
           >
             Connect With Us
           </OutlineButton>
